@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_margin="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/edittext_salario"
+        android:paddingTop="50dp"
+        style="@style/edit_text"
+        android:hint="@string/salario"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        style="@style/wrap_text"
+        android:text="@string/salario_descricao"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edittext_salario"/>
+
+    <EditText
+        android:id="@+id/edit_text_gastos"
+        style="@style/edit_text"
+        android:hint="@string/gastos"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edittext_salario"/>
+
+    <TextView
+        style="@style/wrap_text"
+        android:text="@string/salario_descricao"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_gastos"/>
+
+    <EditText
+        android:id="@+id/edit_text_dependentes"
+        style="@style/edit_text"
+        android:hint="@string/dependentes"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_gastos"/>
+
+    <TextView
+        style="@style/wrap_text"
+        android:text="@string/dependentes_descricao"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_dependentes"/>
+
+    <TextView
+        android:id="@+id/text_imposto_renda_mensal"
+        style="@style/wrap_text"
+        android:text="@string/importo_renda"
+        android:paddingTop="50dp"
+        android:textStyle="bold"
+        android:textSize="17dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_dependentes"/>
+
+    <TextView
+        android:id="@+id/text_money_sifrao"
+        style="@style/wrap_text"
+        android:text="@string/money"
+        android:textSize="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/text_zero"
+        app:layout_constraintTop_toBottomOf="@id/text_imposto_renda_mensal"/>
+
+    <TextView
+        android:id="@+id/text_zero"
+        style="@style/wrap_text"
+        android:text="@string/zero"
+        android:textSize="40dp"
+        app:layout_constraintLeft_toLeftOf="@id/text_money_sifrao"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_imposto_renda_mensal"/>
+
+    <Button
+        android:id="@+id/button_calcular"
+        style="@style/button_calcular"
+        android:layout_marginTop="20dp"
+        android:text="@string/calcular"
+        android:textSize="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_money_sifrao"/>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

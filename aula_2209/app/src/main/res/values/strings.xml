@@ -1,0 +1,16 @@
+<resources>
+    <string name="salario">Salário (R$)</string>
+    <string name="salario_descricao">Salário mensal</string>
+
+    <string name="gastos">Gastos (R$)</string>
+    <string name="gastos_descricao">Gastos com saúde e educação</string>
+
+    <string name="dependentes">Dependentes</string>
+    <string name="dependentes_descricao">N° de dependentes</string>
+
+    <string name="importo_renda">SEU IMPORTO DE RENDA MENSAL:</string>
+    <string name="calcular">CALCULAR</string>
+
+    <string name="money">R$</string>
+    <string name="zero">0</string>
+</resources>
