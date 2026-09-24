@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_margin="30dp"
+    android:padding="30dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -12,6 +13,7 @@
         android:id="@+id/edittext_salario"
         android:paddingTop="50dp"
         style="@style/edit_text"
+        android:inputType="number"
         android:hint="@string/salario"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -28,6 +30,7 @@
         android:id="@+id/edit_text_gastos"
         style="@style/edit_text"
         android:hint="@string/gastos"
+        android:inputType="number"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edittext_salario"/>
@@ -43,6 +46,7 @@
         android:id="@+id/edit_text_dependentes"
         style="@style/edit_text"
         android:hint="@string/dependentes"
+        android:inputType="number"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_text_gastos"/>
@@ -71,7 +75,9 @@
         android:text="@string/money"
         android:textSize="40dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/text_zero"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/text_zero"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintTop_toBottomOf="@id/text_imposto_renda_mensal"/>
 
     <TextView
@@ -79,7 +85,7 @@
         style="@style/wrap_text"
         android:text="@string/zero"
         android:textSize="40dp"
-        app:layout_constraintLeft_toLeftOf="@id/text_money_sifrao"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_imposto_renda_mensal"/>
 
@@ -88,6 +94,7 @@
         style="@style/button_calcular"
         android:layout_marginTop="20dp"
         android:text="@string/calcular"
+        android:backgroundTint="@color/green"
         android:textSize="40dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

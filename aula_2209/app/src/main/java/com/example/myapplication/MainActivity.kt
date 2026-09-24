@@ -26,12 +26,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val duration = Toast.LENGTH_SHORT
 
         if (view.id == R.id.button_calcular) {
-            var salario = binding.edittextSalario.text.toString().toFloat() ?: 0f
-            var gastos = binding.editTextGastos.text.toString().toFloat() ?: 0f
-            var dependentes = binding.editTextDependentes.text.toString().toFloat() ?: 0f
+            var salario = binding.edittextSalario.text.toString().toFloatOrNull() ?: 0F
+            var gastos = binding.editTextGastos.text.toString().toFloatOrNull() ?: 0F
+            var dependentes = binding.editTextDependentes.text.toString().toFloatOrNull() ?: 0F
 
-            text = "eba"
-            binding.textZero.text = "R$ ${salario - gastos}"
+            var imposto = 0F
+            if (salario > 5_000) {
+                imposto = salario - gastos - (189.59F*dependentes)
+                imposto = imposto * 0.275F
+                text = "Imposto calculado!"
+            }
+            else { text = "Imposto não calculado!" }
+
+            binding.textZero.text = "${imposto}"
         }
 
         val toast = Toast.makeText(applicationContext, text, duration)
