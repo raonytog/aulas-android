@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         sp = applicationContext.getSharedPreferences("CHAVE_ACESSO", MODE_PRIVATE)
+        if (sp.getString("name", "") != null) {
+            startActivity(
+                Intent(this, MainActivity2::class.java)
+            )
+        }
         binding.buttonView1Guardar.setOnClickListener(this)
 
     }
