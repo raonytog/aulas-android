@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">aula_2909</string>
-    <string name="view1_frase_topo">Frases de LookBack</string>
+    <string name="view1_frase_topo">Frases de comida</string>
     <string name="view1_guardar">Guardar</string>
+    <string name="view2_greating">Olá, N/A</string>
+    <string name="view2_gerar_frase">gerar outra frase</string>
+
+    <string name="view2_random_phrase"> uhuhuhuhuhuhuhuhuhuhuhuh uhuhuhuhuhuhuhuh uhuhuhuhuhuhuhuh </string>
 
 </resources>

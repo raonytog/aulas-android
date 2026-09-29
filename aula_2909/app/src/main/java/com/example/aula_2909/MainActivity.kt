@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,18 +22,29 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         sp = applicationContext.getSharedPreferences("CHAVE_ACESSO", MODE_PRIVATE)
-
         binding.buttonView1Guardar.setOnClickListener(this)
 
     }
 
     override fun onClick(view : View) {
-        if (view.id == R.id.button_view1_guardar) {
-            sp.edit().putString("name", binding.editView1Name.text.toString()).apply()
+        var text: String? = " error !"
+        val duration = Toast.LENGTH_SHORT
 
-            startActivity(
-                Intent(this, MainActivity2::class.java)
-            )
+        if (view.id == R.id.button_view1_guardar) {
+            if (binding.editView1Name.text.toString().isEmpty()) {
+                val toast = Toast.makeText(applicationContext, "Nome vazio!", duration)
+                toast.show()
+            }
+
+            else {
+                sp.edit().putString("name", binding.editView1Name.text.toString()).apply()
+                text = "Indo para a outra tela..."
+
+
+                startActivity(
+                    Intent(this, MainActivity2::class.java)
+                )
+            }
         }
     }
 }
