@@ -14,15 +14,15 @@ import com.example.aula_2909.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityMainBinding;
-    private lateinit var sp : SharedPreferences;
+    private lateinit var sp: Preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sp = applicationContext.getSharedPreferences("CHAVE_ACESSO", MODE_PRIVATE)
-        if (sp.getString("name", "") != null) {
+        sp = Preferences(this, applicationContext)
+        if (sp.getString("name") != "") {
             startActivity(
                 Intent(this, MainActivity2::class.java)
             )
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             else {
-                sp.edit().putString("name", binding.editView1Name.text.toString()).apply()
+                sp.setString("name", binding.editView1Name.text.toString())
                 text = "Indo para a outra tela..."
 
 
