@@ -25,9 +25,29 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:src="@drawable/pizza_svgrepo_com"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/img_apple"
+        app:layout_constraintRight_toLeftOf="@id/img_icecream"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_icecream"
+        android:background="@color/blue"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:src="@drawable/food_ice_svgrepo_com"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/img_pizza"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:src="@drawable/outline_arrow_left_alt_24"
+        app:layout_constraintHorizontal_bias="0.20"
+        app:layout_constraintTop_toBottomOf="@id/img_pizza"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/text_greating"/>
 
     <TextView
         android:id="@+id/text_greating"
@@ -62,6 +82,7 @@
         android:textSize="20dp"
         android:text="@string/view2_gerar_frase"
         app:cornerRadius="10dp"
+        android:layout_marginBottom="70dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

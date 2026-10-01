@@ -41,6 +41,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 toast.show()
             }
 
+            else if (binding.editView1Name.text.toString().length < 3) {
+                val toast = Toast.makeText(applicationContext, "Nome com menos de 3 caracteres!!", duration)
+                toast.show()
+            }
+
             else {
                 sp.setString("name", binding.editView1Name.text.toString())
                 text = "Indo para a outra tela..."
