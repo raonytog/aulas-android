@@ -17,7 +17,12 @@ class CuriosidadesAlimentares {
             "uma pizza NAO caiu na cabeca de newton"
         )
 
-        // Funções para acessar as listas estáticas de qualquer lugar
+        private var lista_sorvete: MutableList<String> = mutableListOf(
+            "sorvtes sao bons ate no frio",
+            "quem nao gosta de sorvete nao e muito confiavel nao",
+            "sorvetes quando caem no chao congelam 1,27 atomos"
+        )
+
         fun getAboutApple(): String {
             return lista_maca.random()
         }
@@ -26,27 +31,27 @@ class CuriosidadesAlimentares {
             return lista_pizza.random()
         }
 
+        fun getAboutIcecream(): String {
+            return lista_sorvete.random()
+        }
+
         fun getAllRandom(): String {
-            return (lista_maca + lista_pizza).random()
+            return (lista_maca + lista_pizza + lista_sorvete).random()
         }
 
         fun getAll(): MutableList<String> {
-            var lista_geral = (lista_maca + lista_pizza)
+            var lista_geral = (lista_maca + lista_pizza + lista_sorvete)
             return lista_geral as MutableList<String>
         }
 
         fun delFromAll(about: String) {
-            if (lista_maca.contains(about)) {
-                lista_maca.remove(about)
-            }
+            if (lista_maca.contains(about)) { lista_maca.remove(about) }
+            else if (lista_pizza.contains(about)) { lista_pizza.remove(about) }
+            else if (lista_sorvete.contains(about)) { lista_sorvete.remove(about) }
 
-            else if (lista_pizza.contains(about)) {
-                lista_pizza.remove(about)
-            }
-
-            if (lista_maca.isEmpty() and lista_pizza.isEmpty()) {
-                lista_maca.add("Lista vazia!")
-            }
+            if (lista_maca.isEmpty()) lista_maca.add("Lista maca vazia")
+            else if (lista_pizza.isEmpty()) lista_pizza.add("Lista pizza vazia")
+            else if (lista_sorvete.isEmpty()) lista_sorvete.add("Lista sorvete vazia")
         }
     }
 }

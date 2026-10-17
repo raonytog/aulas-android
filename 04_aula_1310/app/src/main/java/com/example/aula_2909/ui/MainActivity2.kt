@@ -12,7 +12,6 @@ import com.example.aula_2909.databinding.ActivityMain2Binding
 
 class MainActivity2 : AppCompatActivity(), View.OnClickListener, View.OnLongClickListener {
     private lateinit var binding: ActivityMain2Binding;
-    private lateinit var sp: Preferences
     private lateinit var mainVM: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,90 +19,73 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener, View.OnLongClic
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sp = Preferences(this, applicationContext)
-        binding.textGreating.text = "Hello, ${sp.getString("name")}"
+        mainVM = ViewModelProvider(this).get(MainViewModel::class.java)
+        setObserver()
+        setListeners()
+
+        mainVM.setup_2()
+    }
+
+    private fun setListeners() {
         binding.imgApple.setOnClickListener(this)
         binding.imgPizza.setOnClickListener(this)
         binding.imgIcecream.setOnClickListener(this)
         binding.buttonGerarFrase.setOnClickListener(this)
         binding.buttonBack.setOnClickListener(this)
-
         binding.textRandomTxt.setOnLongClickListener(this)
-
-        if (sp.getString("food") == "pizza") { binding.imgPizza.setColorFilter(ContextCompat.getColor(this, R.color.yellow)) }
-        else if (sp.getString("food") == "apple") { binding.imgApple.setColorFilter(ContextCompat.getColor(this, R.color.yellow)) }
-
-        mainVM = ViewModelProvider(this).get(MainViewModel::class.java)
-        setObserver()
-
     }
 
+    private fun updateFoodUI(food: String) {
+        val yellowColor = ContextCompat.getColor(this, R.color.yellow)
+
+        binding.imgApple.clearColorFilter()
+        binding.imgPizza.clearColorFilter()
+        binding.imgIcecream.clearColorFilter()
+
+        when (food) {
+            "apple" -> binding.imgApple.setColorFilter(yellowColor)
+            "pizza" -> binding.imgPizza.setColorFilter(yellowColor)
+            "icecream" -> binding.imgIcecream.setColorFilter(yellowColor)
+        }
+    }
+
+
     private fun setObserver() {
-        mainVM.textRandomTxt().observe(this, Observer {
+        mainVM.textName.observe(this) { it ->
+            binding.textGreating.text = "Hello, $it"
+        }
+
+        mainVM.selectedFood.observe(this) { it ->
+            updateFoodUI(it)
+        }
+
+        mainVM.textRandom.observe(this) { it ->
             binding.textRandomTxt.text = it
-        })
+        }
+
+        mainVM.navigateBack.observe(this) { it ->
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 
     override fun onClick(view: View?) {
-        if (view?.id == R.id.img_apple) {
-            binding.textRandomTxt.text = CuriosidadesAlimentares.getAboutApple()
-            binding.imgApple.setColorFilter(ContextCompat.getColor(this, R.color.yellow))
-            binding.imgPizza.clearColorFilter()
-            binding.imgIcecream.clearColorFilter()
-
-            sp.setString("food", "apple")
-        }
-
-        if (view?.id == R.id.img_pizza) {
-            binding.textRandomTxt.text = CuriosidadesAlimentares.getAboutPizza()
-            binding.imgPizza.setColorFilter(ContextCompat.getColor(this, R.color.yellow))
-            binding.imgApple.clearColorFilter()
-            binding.imgIcecream.clearColorFilter()
-
-
-            sp.setString("food", "pizza")
-        }
-
-        if (view?.id == R.id.img_icecream) {
-            binding.textRandomTxt.text = CuriosidadesAlimentares.getAboutPizza()
-            binding.imgIcecream.setColorFilter(ContextCompat.getColor(this, R.color.yellow))
-            binding.imgApple.clearColorFilter()
-            binding.imgPizza.clearColorFilter()
-
-            sp.setString("food", "pizza")
-        }
-
-        if (view?.id == R.id.button_gerar_frase) {
-            binding.textRandomTxt.text = CuriosidadesAlimentares.getAllRandom()
-        }
-
-        if (view?.id == R.id.button_back) {
-            sp.setString("name", "")
-            sp.setString("food", "")
-
-            binding.imgApple.clearColorFilter()
-            binding.imgPizza.clearColorFilter()
-            binding.imgIcecream.clearColorFilter()
-
-            startActivity(
-                Intent(this, MainActivity::class.java)
-            )
+        when (view?.id) {
+            R.id.img_apple -> mainVM.selectFood("apple")
+            R.id.img_pizza -> mainVM.selectFood("pizza")
+            R.id.img_icecream -> mainVM.selectFood("icecream")
+            R.id.button_gerar_frase -> mainVM.generateRandomMensage()
+            R.id.button_back -> mainVM.logout()
         }
     }
 
     override fun onLongClick(view: View?): Boolean {
-        var text: String? = " error !"
-        val duration = Toast.LENGTH_SHORT
-
-        if (view?.id == R.id.text_random_txt) {
-            CuriosidadesAlimentares.delFromAll( binding.textRandomTxt.text.toString() )
-            binding.textRandomTxt.text = CuriosidadesAlimentares.getAllRandom()
-            val toast = Toast.makeText(applicationContext, "Removida frase: ${binding.textRandomTxt.text.toString()}!", duration)
-            toast.show()
-
-            return true
+        when (view?.id) {
+            R.id.text_random_txt -> {
+                mainVM.removeFromLists( binding.textRandomTxt.text.toString())
+                return true
+            }
         }
-
         return false
     }
 }
