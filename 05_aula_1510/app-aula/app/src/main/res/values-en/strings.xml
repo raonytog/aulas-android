@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">class_2909</string>
-    <string name="view1_frase_topo">Food Phrases</string>
-    <string name="view1_guardar">Keep</string>
-    <string name="view2_greating">Hello, N/A</string>
-    <string name="view2_gerar_frase">Generate a new Phrase</string>
+    <string name="app_name">class_1310</string>
+    <string name="post_id"> Type here the post ID </string>
+    <string name="get_post_by_id"> Get post </string>
+    <string name="default_post"> Nothing yet! </string>
+    <string name="empty_id"> Empty id, provide a ID! </string>
 
-    <string name="view2_random_phrase"> uhuhuhuhuhuhuhuhuhuhuhuh uhuhuhuhuhuhuhuh uhuhuhuhuhuhuhuh.US </string>
-    <string name="palavra_pequena"> Name with less than 3 characters! </string>
-    <string name="nome_vazio"> Empty name! </string>
-    <string name="movendo"> Moving from screen! </string>
-    <string name="type_name"> Type your name here </string>
 </resources>

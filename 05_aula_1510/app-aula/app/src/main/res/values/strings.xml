@@ -1,13 +1,7 @@
 <resources>
-    <string name="app_name">aula_2909</string>
-    <string name="view1_frase_topo">Frases de comida</string>
-    <string name="view1_guardar">Guardar</string>
-    <string name="view2_greating">Olá, N/A</string>
-    <string name="view2_gerar_frase">gerar outra frase</string>
-
-    <string name="view2_random_phrase"> uhuhuhuhuhuhuhuhuhuhuhuh uhuhuhuhuhuhuhuh uhuhuhuhuhuhuhuh </string>
-    <string name="palavra_pequena"> Nome com menos de 3 caracteres! </string>
-    <string name="nome_vazio"> Nome vazio! </string>
-    <string name="movendo"> Movendo de tela! </string>
-    <string name="type_name"> Digite seu nome aqui </string>
+    <string name="app_name">aula_1310</string>
+    <string name="post_id"> Digite o id do post aqui </string>
+    <string name="get_post_by_id"> Obtenha o post</string>
+    <string name="default_post"> Nada ainda! </string>
+    <string name="empty_id"> ID vazio, informe um ID! </string>
 </resources>
