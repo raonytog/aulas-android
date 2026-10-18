@@ -14,7 +14,7 @@ class ClientRetrofit {
             val http = OkHttpClient.Builder()
             if (!::INSTANCE.isInitialized) {
                 INSTANCE = Retrofit.Builder()
-                    .baseUrl(Consts.API.URL)
+                    .baseUrl(Consts.API.URL_BASE)
                     .client(http.build())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()

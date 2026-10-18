@@ -3,7 +3,6 @@ package com.example.aula_2909
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,7 +21,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mainVM = ViewModelProvider(this).get(MainViewModel::class.java)
         setObserver()
         setListeners()
-
 
         mainVM.setup_1()
     }

@@ -71,11 +71,21 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener, View.OnLongClic
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            R.id.img_apple -> mainVM.selectFood("apple")
-            R.id.img_pizza -> mainVM.selectFood("pizza")
-            R.id.img_icecream -> mainVM.selectFood("icecream")
+            R.id.img_apple -> {
+                mainVM.selectFood("apple")
+                mainVM.requestFood("apple")
+            }
+            R.id.img_pizza -> {
+                mainVM.selectFood("pizza")
+                mainVM.requestFood("pizza")
+            }
+            R.id.img_icecream -> {
+                mainVM.selectFood("icecream")
+                mainVM.requestFood("cream")
+            }
             R.id.button_gerar_frase -> mainVM.generateRandomMensage()
             R.id.button_back -> mainVM.logout()
+
         }
     }
 
