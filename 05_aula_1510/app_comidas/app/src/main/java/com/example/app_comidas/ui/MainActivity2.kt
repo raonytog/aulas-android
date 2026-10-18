@@ -51,22 +51,22 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener, View.OnLongClic
 
 
     private fun setObserver() {
-        mainVM.textName.observe(this) { it ->
+        mainVM.getTextName().observe(this, Observer {
             binding.textGreating.text = "Hello, $it"
-        }
+        })
 
-        mainVM.selectedFood.observe(this) { it ->
+        mainVM.getSelectedFood().observe(this, Observer {
             updateFoodUI(it)
-        }
+        })
 
-        mainVM.textRandom.observe(this) { it ->
+        mainVM.getTextRandom().observe(this, Observer {
             binding.textRandomTxt.text = it
-        }
+        })
 
-        mainVM.navigateBack.observe(this) { it ->
+        mainVM.getNavigateBack().observe(this, Observer {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }
+        })
     }
 
     override fun onClick(view: View?) {

@@ -1,4 +1,4 @@
-package com.example.aula_2909
+package com.example.app_comidas.utils
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE

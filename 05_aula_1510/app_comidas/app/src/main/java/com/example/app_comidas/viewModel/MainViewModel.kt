@@ -7,30 +7,42 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.application
+import com.example.app_comidas.utils.Preferences
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
     private val sp = Preferences(application, application.applicationContext)
 
-    private var _textRandom = MutableLiveData<String>()
-    var textRandom: LiveData<String> = _textRandom
+    private var textRandom = MutableLiveData<String>()
+    private val textName = MutableLiveData<String>()
+    private val selectedFood = MutableLiveData<String>()
+    private val navigateBack = MutableLiveData<Boolean>()
+    private val navigateJump = MutableLiveData<Boolean>()
 
-    private val _textName = MutableLiveData<String>()
-    val textName: LiveData<String> = _textName
+    fun getTextRandom(): LiveData<String> {
+        return textRandom
+    }
 
-    private val _selectedFood = MutableLiveData<String>()
-    var selectedFood: LiveData<String> = _selectedFood
+    fun getTextName(): LiveData<String> {
+        return textName
+    }
 
-    private val _navigateBack = MutableLiveData<Boolean>()
-    var navigateBack: LiveData<Boolean> = _navigateBack
+    fun getSelectedFood(): LiveData<String> {
+        return selectedFood
+    }
 
-    private val _navigateJump = MutableLiveData<Boolean>()
-    var navigateJump: LiveData<Boolean> = _navigateJump
+    fun getNavigateBack(): LiveData<Boolean> {
+        return navigateBack
+    }
+
+    fun getNavigateJump(): LiveData<Boolean> {
+        return navigateJump
+    }
 
     fun setup_1() {
-        _textName.value = sp.getString("name")
-        if (_textName.value != "") _navigateJump.value = true
-        else _navigateJump.value = false
+        textName.value = sp.getString("name")
+        if (textName.value != "") navigateJump.value = true
+        else navigateJump.value = false
     }
 
     fun validateName(name: String) {
@@ -48,39 +60,39 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         else {
             sp.setString("name", name)
             toast = Toast.makeText(application.applicationContext, R.string.movendo, duration)
-            _navigateJump.value = true
+            navigateJump.value = true
         }
         toast.show()
 
     }
 
     fun setup_2() {
-        _textName.value = sp.getString("name")
+        textName.value = sp.getString("name")
     }
 
     fun selectFood(food: String) {
-        _selectedFood.value = food
+        selectedFood.value = food
 
-        when (_selectedFood.value) {
-            "apple" -> { _textRandom.value = CuriosidadesAlimentares.getAboutApple() }
-            "pizza" -> { _textRandom.value = CuriosidadesAlimentares.getAboutPizza() }
-            "icecream" -> { _textRandom.value = CuriosidadesAlimentares.getAboutIcecream() }
+        when (selectedFood.value) {
+            //"apple" -> { textRandom.value = CuriosidadesAlimentares.getAboutApple() }
+            //"pizza" -> { textRandom.value = CuriosidadesAlimentares.getAboutPizza() }
+            //"icecream" -> { textRandom.value = CuriosidadesAlimentares.getAboutIcecream() }
         }
     }
 
     fun generateRandomMensage() {
-        _textRandom.value = CuriosidadesAlimentares.getAllRandom()
+        // textRandom.value = CuriosidadesAlimentares.getAllRandom()
     }
 
     fun logout() {
         sp.setString("name", "")
         sp.setString("food", "")
-        _navigateBack.value = true
-        _selectedFood.value = ""
+        navigateBack.value = true
+        selectedFood.value = ""
     }
 
     fun removeFromLists(phrase: String) {
-        CuriosidadesAlimentares.delFromAll( phrase ).toString()
-        _textRandom.value = CuriosidadesAlimentares.getAllRandom()
+        //CuriosidadesAlimentares.delFromAll( phrase ).toString()
+        //textRandom.value = CuriosidadesAlimentares.getAllRandom()
     }
 }

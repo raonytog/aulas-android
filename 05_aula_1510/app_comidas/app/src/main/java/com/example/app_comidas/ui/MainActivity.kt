@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.aula_2909.databinding.ActivityMainBinding
 
@@ -27,12 +28,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun setObserver() {
-        mainVM.navigateJump.observe(this) { it ->
+        mainVM.getNavigateJump().observe(this, Observer {
             if (it) {
                 startActivity(Intent(this, MainActivity2::class.java))
                 finish()
             }
-        }
+        })
     }
 
     fun setListeners() {
