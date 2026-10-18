@@ -5,5 +5,4 @@
     <string name="get_post_by_id"> Get post </string>
     <string name="default_post"> Nothing yet! </string>
     <string name="empty_id"> Empty id, provide a ID! </string>
-
 </resources>
