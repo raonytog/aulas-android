@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"> Spotfy API </string>
+    <string name="search"> Search </string>
+    <string name="search_result"> Not founded! </string>
+    <string name="join"> Entrar </string>
+
+    <string name="user_tittle"> User </string>
+    <string name="password_tittle"> Password </string>
+    <string name="artist_tittle"> Artist </string>
+
+    <string name="user"> Insert your suer name </string>
+    <string name="password"> Insert your password </string>
+    <string name="artist"> Insert your artist name </string>
+
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+</resources>

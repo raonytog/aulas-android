@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name"> Spotfy API </string>
+    <string name="search"> Buscar </string>
+    <string name="search_result"> Nada encontrado! </string>
+    <string name="join"> Entrar </string>
+
+
+    <string name="user_tittle"> Usuário </string>
+    <string name="password_tittle"> Senha </string>
+    <string name="artist_tittle"> Artista </string>
+
+    <string name="user"> Insira seu nome de usuário </string>
+    <string name="password"> Insira sua senha </string>
+    <string name="artist"> Insira o nome do artista </string>
+
+    <string name="first_fragment_label">Primeiro Fragmento</string>
+    <string name="second_fragment_label">Segundo Fragmento</string>
+</resources>
