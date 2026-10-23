@@ -1,44 +1,45 @@
 package com.example.estudo.repository.model
 
-import androidx.navigationevent.NavigationEventInfo
 import com.google.gson.annotations.SerializedName
-class CEPEntity {
+import java.io.Serializable
+
+data class CEPEntity(
     @SerializedName("cep")
-    val cep: String = ""
+    val cep: String = "",
 
     @SerializedName("logradouro")
-    val logradouro: String = ""
+    val logradouro: String = "",
 
     @SerializedName("complemento")
-    val complemento: String = ""
+    val complemento: String = "",
 
     @SerializedName("unidade")
-    val unidade: String = ""
+    val unidade: String = "",
 
     @SerializedName("bairro")
-    val bairro: String = ""
+    val bairro: String = "",
 
     @SerializedName("localidade")
-    val localidade: String = ""
+    val localidade: String = "",
 
     @SerializedName("uf")
-    val uf: String = ""
+    val uf: String = "",
 
     @SerializedName("estado")
-    val estado: String = ""
+    val estado: String = "",
 
-    @SerializedName("complemento")
-    val regiao: String = ""
+    @SerializedName("regiao")
+    val regiao: String = "",
 
-    @SerializedName("complemento")
-    val ibge: String = ""
+    @SerializedName("ibge")
+    val ibge: String = "",
 
-    @SerializedName("complemento")
-    val gia: String = ""
+    @SerializedName("gia")
+    val gia: String = "",
 
-    @SerializedName("complemento")
-    val ddd: String = ""
+    @SerializedName("ddd")
+    val ddd: String = "",
 
-    @SerializedName("complemento")
+    @SerializedName("siafi")
     val siafi: String = ""
-}
+) : Serializable

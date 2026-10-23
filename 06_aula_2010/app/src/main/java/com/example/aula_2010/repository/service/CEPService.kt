@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface CEPService {
-    @GET("{cep}")
+    @GET("{cep}/json")
     fun getInfoFromCEP(@Path("cep") cep: String): Call<CEPEntity>
 
 }

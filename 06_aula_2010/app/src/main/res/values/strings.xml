@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">aula_2010</string>
+    <string name="app_name">GeoCEP</string>
+    <string name="type_cep">Informe o CEP</string>
+    <string name="cep_format">29290-000</string>
+    <string name="search_cep">Buscar</string>
+    <string name="splash_screen">Conectando com GeoCEP...</string>
+    <string name="wellcome"> Bem vindo ao GeoCEP!</string>
+    <string name="sub_wellcome">Consulte o endereço e veja em\nqual estado ele está localizado!</string>
 </resources>

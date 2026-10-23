@@ -12,17 +12,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 import com.example.aula_2010.R
-import com.example.aula_2010.
+import com.example.aula_2010.databinding.ActivitySearchCepBinding
 import com.example.estudo.viewModel.MainViewModel
 
 class SearchCEP : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mainVM: MainViewModel
-    private lateinit var binding :
+    private lateinit var binding : ActivitySearchCepBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //binding = LoginBinding.inflate(layoutInflater)
+        binding = ActivitySearchCepBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         mainVM = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -32,16 +32,27 @@ class SearchCEP : AppCompatActivity(), View.OnClickListener {
     }
 
     fun setObserver() {
+        mainVM.getCepResult().observe(this, Observer { it ->
+            if (it != null) {
+                val intent = Intent(this, InformationsActivity::class.java)
+                intent.putExtra("CEP_DATA", it)
+                startActivity(intent)
+                finish()
+            }
 
+            else {
+                Toast.makeText(this, "CEP não existe!", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     fun setListener() {
-
+        binding.buttonSearch.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            R.id.button_search -> mainVM.requestCep( binding )
+            R.id.button_search -> mainVM.requestCep( binding.edittextCep.text.toString() )
         }
     }
 }

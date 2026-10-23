@@ -16,8 +16,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
-    private val cepp = MutableLiveData<String>()
-    fun getCep(): LiveData<String> { return cepp}
+    private val cepResult = MutableLiveData<CEPEntity>()
+    fun getCepResult(): LiveData<CEPEntity> { return cepResult }
+
+    private val errorMensage = MutableLiveData<String>()
+    fun getErrorMensage(): LiveData<String> { return errorMensage }
 
     fun requestCep(cep: String) {
         val apiBlogService = ClientRetrofit.createService(CEPService::class.java)
@@ -25,11 +28,12 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
 
         blogPost.enqueue(object : Callback<CEPEntity> {
             override fun onResponse(call: Call<CEPEntity>, response: Response<CEPEntity>) {
-                cepp.value = "${response.body()?.cep} - ${response.body()?.cep}"
+                cepResult.value = response.body()
             }
 
             override fun onFailure(call: Call<CEPEntity>, t: Throwable) {
-                cepp.value = "Falha na requisição da API"
+                cepResult.value = null
+                errorMensage.value = "CEP não existe!"
             }
         })
     }

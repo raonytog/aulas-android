@@ -1,27 +1,44 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Aula_2010" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <!-- Base do Tema Claro da Aplicação -->
+    <style name="Base.Theme.Aula_2010" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Define a cor principal do aplicativo como azul -->
+        <item name="colorPrimary">@color/blue_primary</item>
+
+        <!-- Cor de fundo padrão de todas as telas (Fundo Claro) -->
+        <item name="android:windowBackground">@color/bg_app_light</item>
+
+        <!-- ÍCONES ESCUROS NA STATUS BAR (Ativa os ícones pretos para fundo claro) -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="main_text">
-        <item name="android:textSize">20dp</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:layout_marginHorizontal"> 30dp </item>
-
-    </style>
-
-    <style name="main_edit_text">
-        <item name="android:background">@color/white</item>
-        <item name="android:padding">10dp</item>
-        <item name="android:textSize">20dp</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:layout_marginHorizontal"> 30dp </item>
-
-    </style>
-
+    <!-- Tema Principal (Herda de Base.Theme.Aula_2010) -->
     <style name="Theme.Aula_2010" parent="Base.Theme.Aula_2010" />
+
+    <!-- Estilo para Rótulos/Títulos de Texto -->
+    <style name="main_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginHorizontal">30dp</item>
+    </style>
+
+    <style name="sub_text">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_hint</item>
+        <item name="android:layout_marginHorizontal">30dp</item>
+    </style>
+
+    <!-- Estilo para o Campo de Entrada (EditText) -->
+    <style name="main_edit_text">
+        <item name="android:background">@color/bg_edit_text</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:layout_marginHorizontal">30dp</item>
+    </style>
+
 </resources>
