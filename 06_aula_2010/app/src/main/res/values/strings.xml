@@ -1,9 +1,52 @@
 <resources>
     <string name="app_name">GeoCEP</string>
+
+    <string name="splash_screen">Conectando com GeoCEP...</string>
+
+    <!-- strings da tela de busca -->
     <string name="type_cep">Informe o CEP</string>
     <string name="cep_format">29290-000</string>
     <string name="search_cep">Buscar</string>
-    <string name="splash_screen">Conectando com GeoCEP...</string>
     <string name="wellcome"> Bem vindo ao GeoCEP!</string>
     <string name="sub_wellcome">Consulte o endereço e veja em\nqual estado ele está localizado!</string>
+
+    <!-- string para o banner -->
+    <string name="state"> Estado </string>
+    <string name="state_name"> Nome do estado </string>
+    <string name="state_abrev"> UF </string>
+
+    <!-- string para o endereco -->
+    <string name="cep"> CEP </string>
+    <string name="cep_value"> N/A </string>
+
+    <string name="logradouro"> Logradouro </string>
+    <string name="logradouro_value"> N/A </string>
+
+    <string name="complemento"> Complemento </string>
+    <string name="complemento_value"> N/A </string>
+
+    <string name="bairro"> Bairro </string>
+    <string name="bairro_value"> N/A </string>
+
+    <string name="cidade"> Cidade </string>
+    <string name="cidade_value"> N/A </string>
+
+    <string name="estado"> Estado </string>
+    <string name="estado_value"> N/A </string>
+
+    <!-- string para o Info adicionais -->
+    <string name="regiao"> Região </string>
+    <string name="regiao_value"> N/A </string>
+
+    <string name="capital"> Capital </string>
+    <string name="capital_value"> N/A </string>
+
+    <string name="ddd"> DDD </string>
+    <string name="ddd_value"> N/A </string>
+
+    <string name="codigo_ibge"> Código do IBGE </string>
+    <string name="codigo_ibge_value"> N/A </string>
+
+
+
 </resources>

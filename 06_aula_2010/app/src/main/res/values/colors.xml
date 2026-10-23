@@ -7,9 +7,10 @@
     <!-- Fundo da Tela e Elementos de Interface -->
     <color name="bg_app_light">#F5F7FA</color>        <!-- Fundo claro/cinza suave para a tela -->
     <color name="bg_edit_text">#EDEDED</color>        <!-- Fundo branco para sobressair no EditText -->
+    <color name="navbar_bg">#1E88E5</color>
 
     <!-- Textos e Bordas -->
     <color name="text_primary">#1A1C1E</color>        <!-- Texto escuro de alta legibilidade -->
     <color name="text_hint">#8A919E</color>           <!-- Cor do texto de dica (placeholder) -->
-    <color name="border_edit_text">#D0D5DD</color>     <!-- Borda discreta para o EditText -->
+    <color name="border_edit_text">#6E98D7</color>     <!-- Borda discreta para o EditText -->
 </resources>
