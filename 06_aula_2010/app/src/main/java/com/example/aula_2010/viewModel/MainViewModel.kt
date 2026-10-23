@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.aula_2010.repository.service.CEPService
 import com.example.estudo.repository.client.ClientRetrofit
 import com.example.estudo.repository.model.CEPEntity
+import com.example.estudo.utils.Constantes
 
 
 import retrofit2.Call
@@ -32,7 +33,6 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<CEPEntity>, t: Throwable) {
-                cepResult.value = null
                 errorMensage.value = "CEP não existe!"
             }
         })

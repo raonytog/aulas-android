@@ -2,6 +2,7 @@ package com.example.aula_2010.UI
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -37,7 +38,6 @@ class SearchCEP : AppCompatActivity(), View.OnClickListener {
                 val intent = Intent(this, InformationsActivity::class.java)
                 intent.putExtra("CEP_DATA", it)
                 startActivity(intent)
-                finish()
             }
 
             else {
