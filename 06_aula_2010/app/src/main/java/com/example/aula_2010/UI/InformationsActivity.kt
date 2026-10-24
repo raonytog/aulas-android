@@ -41,7 +41,35 @@ class InformationsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun paintBrazilMap( uf : String ) {
-        //binding.imgMapBrasil.
+        when( uf ) {
+            "AC" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_ac)
+            "AL" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_al)
+            "AP" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_ap)
+            "AM" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_am)
+            "BA" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_ba)
+            "CE" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_ce)
+            "DF" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_df)
+            "ES" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_es)
+            "GO" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_go)
+            "MA" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_ma)
+            "MG" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_mg)
+            "MS" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_ms)
+            "MT" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_mt)
+            "PA" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_pa)
+            "PB" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_pb)
+            "PE" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_pe)
+            "PI" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_pi)
+            "PR" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_pr)
+            "RJ" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_rj)
+            "RN" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_rn)
+            "RO" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_ro)
+            "RR" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_rr)
+            "RS" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_rs)
+            "SC" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_sc)
+            "SE" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_se)
+            "SP" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_sp)
+            "TO" -> binding.imgMapBrasil.setImageResource(R.drawable.mapa_to)
+        }
     }
 
     fun setup( entity: CEPEntity) {
@@ -50,7 +78,6 @@ class InformationsActivity : AppCompatActivity(), View.OnClickListener {
 
         // mapa
         paintBrazilMap( entity.uf )
-
 
         // first fold
         binding.textStateName.setText( getCorrectionEntity(entity.estado) )
