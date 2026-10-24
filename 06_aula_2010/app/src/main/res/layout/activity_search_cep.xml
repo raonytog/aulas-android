@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:text="@string/wellcome"
         style="@style/main_text"
+        android:textSize="20sp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,15 +57,17 @@
 
     <TextView
         android:id="@+id/text_under_wellcome"
+        style="@style/sub_text"
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sub_wellcome"
-        style="@style/sub_text"
         android:paddingTop="15dp"
         android:paddingBottom="80dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/sub_wellcome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_wellcome"/>
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_wellcome" />
 
     <TextView
         android:id="@+id/text_cep"

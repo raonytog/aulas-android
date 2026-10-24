@@ -2,7 +2,7 @@ package com.example.estudo.utils
 
 class Constantes {
     object API {
-        val URL_BASE = "https://viacep.com.br/ws/"
-        // https://viacep.com.br/ws/29290000/json pra rio novo do sul
+        val URL_BASE_CEP = "https://viacep.com.br/ws/"
+        val URL_BASE_BANDEIRAS = "https://apis.codante.io/"
     }
 }

@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.example.aula_2010.R
 import com.example.aula_2010.databinding.ActivitySearchCepBinding
+import com.example.estudo.repository.model.CEPEntity
 import com.example.estudo.viewModel.MainViewModel
 
 class SearchCEP : AppCompatActivity(), View.OnClickListener {
@@ -32,17 +33,24 @@ class SearchCEP : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    fun validate( entity: CEPEntity) : Boolean {
+        return entity.uf.isBlank()
+    }
+
     fun setObserver() {
-        mainVM.getCepResult().observe(this, Observer { it ->
-            if (it != null) {
-                val intent = Intent(this, InformationsActivity::class.java)
-                intent.putExtra("CEP_DATA", it)
-                startActivity(intent)
+        mainVM.getCepResult().observe(this, Observer {
+            if (validate(it)) {
+                Toast.makeText(this, getString(R.string.toast_error_invalid_cep), Toast.LENGTH_SHORT).show()
+                return@Observer
             }
 
-            else {
-                Toast.makeText(this, "CEP não existe!", Toast.LENGTH_SHORT).show()
-            }
+            val intent = Intent(this, InformationsActivity::class.java)
+            intent.putExtra("CEP_DATA", it)
+            startActivity(intent)
+        })
+
+        mainVM.getErrorMensage().observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
     }
 

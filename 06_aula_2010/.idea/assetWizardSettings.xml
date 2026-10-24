@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/backpack/baseline_backpack_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialsymbolsoutlined/cancel/outline_cancel_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="baseline_backpack_24" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/brasil__map.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="br" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/br.svg" />
                           </map>
                         </option>
                       </PersistentState>
