@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">GeoCEP</string>
+    <string name="splash_screen">Conecting into GeoCEP...</string>
+
+    <!-- strings da tela de busca -->
+    <string name="type_cep">Type CEP</string>
+    <string name="cep_format">29290-000</string>
+    <string name="search_cep">Search</string>
+    <string name="wellcome">Welcome too GeoCEP!</string>
+    <string name="sub_wellcome">Search for the address and see in\nwhich state he is!</string>
+
+    <!-- string para o banner -->
+    <string name="state">State</string>
+    <string name="state_name">State name</string>
+    <string name="state_abrev">UF</string>
+
+    <!-- string para o endereco -->
+    <string name="cep">CEP</string>
+    <string name="cep_value">N/A</string>
+
+    <string name="logradouro">Logradouro</string>
+    <string name="logradouro_value">N/A</string>
+
+    <string name="complemento">Complemento</string>
+    <string name="complemento_value">N/A</string>
+
+    <string name="bairro">Neighborhood</string>
+    <string name="bairro_value">N/A</string>
+
+    <string name="cidade">City</string>
+    <string name="cidade_value">N/A</string>
+
+    <string name="estado">State</string>
+    <string name="estado_value">N/A</string>
+
+    <!-- string para o Info adicionais -->
+    <string name="regiao">Region</string>
+    <string name="regiao_value">N/A</string>
+
+    <string name="capital">Capital</string>
+    <string name="capital_value">N/A</string>
+
+    <string name="ddd">DDD</string>
+    <string name="ddd_value">N/A</string>
+
+    <string name="codigo_ibge">IBGE code</string>
+    <string name="codigo_ibge_value">N/A</string>
+
+    <!-- strings de toasts de erro -->
+    <string name="toast_error_invalid_cep">Invalid CEP, try another one.</string>
+    <string name="toast_error_less_thant_eight_digits">There is less than 8 digits in the CEP informed.</string>
+    <string name="toast_error_empity_cep">CEP was not informed yet.</string>
+    <string name="toast_error_not_found_flag"> Flag not found.</string>
+
+    <string name="default_asnwer">N/A</string>
+
+    <!-- strings dos nomes das capitais -->
+    <string name="ac_capital">Rio Branco</string>
+    <string name="al_capital">Maceió</string>
+    <string name="ap_capital">Macapá</string>
+    <string name="am_capital">Manaus</string>
+    <string name="ba_capital">Salvador</string>
+    <string name="ce_capital">Fortaleza</string>
+    <string name="df_capital">Brasília</string>
+    <string name="es_capital">Vitória</string>
+    <string name="go_capital">Goiânia</string>
+    <string name="ma_capital">São Luís</string>
+    <string name="mg_capital">Belo Horizonte</string>
+    <string name="ms_capital">Campo Grande</string>
+    <string name="mt_capital">Cuiabá</string>
+    <string name="pa_capital">Belém</string>
+    <string name="pb_capital">João Pessoa</string>
+    <string name="pe_capital">Recife</string>
+    <string name="pi_capital">Teresina</string>
+    <string name="pr_capital">Curitiba</string>
+    <string name="rj_capital">Rio de Janeiro</string>
+    <string name="rn_capital">Natal</string>
+    <string name="ro_capital">Porto Velho</string>
+    <string name="rr_capital">Boa Vista</string>
+    <string name="rs_capital">Porto Alegre</string>
+    <string name="sc_capital">Florianópolis</string>
+    <string name="se_capital">Aracaju</string>
+    <string name="sp_capital">São Paulo</string>
+    <string name="to_capital">Palmas</string>
+</resources>

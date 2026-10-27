@@ -53,4 +53,34 @@
     <string name="toast_error_not_found_flag"> Bandeira não encontrada.</string>
 
     <string name="default_asnwer">N/A</string>
+
+    <!-- strings dos nomes das capitais -->
+    <string name="ac_capital">Rio Branco</string>
+    <string name="al_capital">Maceió</string>
+    <string name="ap_capital">Macapá</string>
+    <string name="am_capital">Manaus</string>
+    <string name="ba_capital">Salvador</string>
+    <string name="ce_capital">Fortaleza</string>
+    <string name="df_capital">Brasília</string>
+    <string name="es_capital">Vitória</string>
+    <string name="go_capital">Goiânia</string>
+    <string name="ma_capital">São Luís</string>
+    <string name="mg_capital">Belo Horizonte</string>
+    <string name="ms_capital">Campo Grande</string>
+    <string name="mt_capital">Cuiabá</string>
+    <string name="pa_capital">Belém</string>
+    <string name="pb_capital">João Pessoa</string>
+    <string name="pe_capital">Recife</string>
+    <string name="pi_capital">Teresina</string>
+    <string name="pr_capital">Curitiba</string>
+    <string name="rj_capital">Rio de Janeiro</string>
+    <string name="rn_capital">Natal</string>
+    <string name="ro_capital">Porto Velho</string>
+    <string name="rr_capital">Boa Vista</string>
+    <string name="rs_capital">Porto Alegre</string>
+    <string name="sc_capital">Florianópolis</string>
+    <string name="se_capital">Aracaju</string>
+    <string name="sp_capital">São Paulo</string>
+    <string name="to_capital">Palmas</string>
+
 </resources>

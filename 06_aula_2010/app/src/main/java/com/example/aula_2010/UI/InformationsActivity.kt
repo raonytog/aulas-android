@@ -72,12 +72,47 @@ class InformationsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    fun setCapital( uf: String ) {
+        when ( uf ) {
+            "AC" -> binding.textCapitalValue.setText(R.string.ac_capital)
+            "AL" -> binding.textCapitalValue.setText(R.string.al_capital)
+            "AP" -> binding.textCapitalValue.setText(R.string.ap_capital)
+            "AM" -> binding.textCapitalValue.setText(R.string.am_capital)
+            "BA" -> binding.textCapitalValue.setText(R.string.ba_capital)
+            "CE" -> binding.textCapitalValue.setText(R.string.ce_capital)
+            "DF" -> binding.textCapitalValue.setText(R.string.df_capital)
+            "ES" -> binding.textCapitalValue.setText(R.string.es_capital)
+            "GO" -> binding.textCapitalValue.setText(R.string.go_capital)
+            "MA" -> binding.textCapitalValue.setText(R.string.ma_capital)
+            "MG" -> binding.textCapitalValue.setText(R.string.mg_capital)
+            "MS" -> binding.textCapitalValue.setText(R.string.ms_capital)
+            "MT" -> binding.textCapitalValue.setText(R.string.mt_capital)
+            "PA" -> binding.textCapitalValue.setText(R.string.pa_capital)
+            "PB" -> binding.textCapitalValue.setText(R.string.pb_capital)
+            "PE" -> binding.textCapitalValue.setText(R.string.pe_capital)
+            "PI" -> binding.textCapitalValue.setText(R.string.pi_capital)
+            "PR" -> binding.textCapitalValue.setText(R.string.pr_capital)
+            "RJ" -> binding.textCapitalValue.setText(R.string.rj_capital)
+            "RN" -> binding.textCapitalValue.setText(R.string.rn_capital)
+            "RO" -> binding.textCapitalValue.setText(R.string.ro_capital)
+            "RR" -> binding.textCapitalValue.setText(R.string.rr_capital)
+            "RS" -> binding.textCapitalValue.setText(R.string.rs_capital)
+            "SC" -> binding.textCapitalValue.setText(R.string.sc_capital)
+            "SE" -> binding.textCapitalValue.setText(R.string.se_capital)
+            "SP" -> binding.textCapitalValue.setText(R.string.sp_capital)
+            "TO" -> binding.textCapitalValue.setText(R.string.to_capital)
+        }
+    }
+
     fun setup( entity: CEPEntity) {
         // bandeira
         mainVM.requestBandeira( entity.uf )
 
         // mapa
         paintBrazilMap( entity.uf )
+
+        // define as capitais q n vieram de api
+        setCapital( entity.uf )
 
         // first fold
         binding.textStateName.setText( getCorrectionEntity(entity.estado) )
