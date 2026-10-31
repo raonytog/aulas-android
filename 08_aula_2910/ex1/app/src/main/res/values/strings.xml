@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ex1</string>
+    <string name="list_name">Lista de animais:</string>
+    <string name="default_value">n/a</string>
 </resources>
