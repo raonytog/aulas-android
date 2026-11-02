@@ -7,7 +7,7 @@ import com.example.ex1.data.model.AnimalModel
 import com.example.ex1.databinding.AnimalLineBinding
 import com.example.ex1.view.viewHolder.ListAnimalHolder
 
-class ListAnimalAdapter : RecyclerView.Adapter<ListAnimalHolder>() {
+class ListAnimalAdapter(private val onDeleteClick: (AnimalModel) -> Unit = {}) : RecyclerView.Adapter<ListAnimalHolder>() {
     private var animalList: List<AnimalModel> = listOf() // a interface armazena os itens da lista
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAnimalHolder {
@@ -16,7 +16,7 @@ class ListAnimalAdapter : RecyclerView.Adapter<ListAnimalHolder>() {
     }
 
     override fun onBindViewHolder(holder: ListAnimalHolder, position: Int) {
-        holder.bindVH(animalList[position])
+        holder.bindVH(animalList[position], onDeleteClick)
     }
 
     override fun getItemCount(): Int {

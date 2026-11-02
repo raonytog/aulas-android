@@ -1,64 +1,53 @@
 package com.example.ex1.view.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.ex1.R
-import com.example.ex1.data.model.AnimalModel
-import com.example.ex1.data.room.AppDatabase
 import com.example.ex1.databinding.ActivityMainBinding
-import com.example.ex1.utils.Constantes
-import com.example.ex1.view.adapter.ListAnimalAdapter
+import com.example.ex1.viewModel.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
-    private val adapter = ListAnimalAdapter()
+    private lateinit var mainVM: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setBinding()
+        mainVM = ViewModelProvider(this)[MainViewModel::class.java]
+
         setObserver()
         setListener()
-        setupBD()
-    }
-
-    fun setBinding() {
-        binding.recyclerListAnimal.layoutManager = LinearLayoutManager(this)
-        binding.recyclerListAnimal.adapter = adapter
     }
 
     fun setObserver() {
+        mainVM.getIsOnListPage().observe(this, Observer {
+            startActivity(Intent(this, animal_list::class.java))
+            finish()
+        })
+
+        mainVM.getToastError().observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
 
     }
 
     fun setListener() {
-
+        binding.imgAdd.setOnClickListener(this)
+        binding.imgList.setOnClickListener(this)
+        binding.buttonAddAnimal.setOnClickListener(this)
     }
 
-    fun setupBD() {
-        val db = AppDatabase.getDatabase(this).AnimalDAO()
-
-        for (animal in Constantes.MOCK_DATA.ANIMAL_LIST) {
-            val animal = AnimalModel().apply {
-                this.name = animal
-            }
-
-            var aux = db.getByName(animal.name)
-            if (aux == null) db.insert(animal)
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.button_add_animal -> { mainVM.addAnimal( binding.editAnimaName.text.toString() ) }
+            R.id.img_list -> { mainVM.setIsOnListPage(true) }
         }
-
-        val productList = db.getAll()
-        adapter.updateProdList(productList)
-
-        var toast_length = Toast.LENGTH_SHORT
-        if (productList.isNotEmpty()) { Toast.makeText(this, "Sucesso", toast_length).show() }
-        else { Toast.makeText(this, "Derrota", toast_length).show()  }
     }
 }

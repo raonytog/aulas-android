@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
@@ -8,34 +10,38 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center">
-        <TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
             <TextView
                 android:id="@+id/text_animal_id"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/default_value"
-                android:paddingRight="30dp"
-                android:textSize="20sp"
-                android:textColor="@color/light_purple"/>
-
-            <View
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:background="@color/light_purple"/>
-
-            <TextView
-                android:id="@+id/text_animal_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_value"
-                android:paddingLeft="30dp"
+                android:paddingEnd="16dp"
                 android:textSize="20sp"
-                android:textColor="@color/light_purple"
-                />
+                android:textColor="@color/light_purple" />
+
+            <TextView
+                android:id="@+id/text_animal_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/default_value"
+                android:textSize="20sp"
+                android:textColor="@color/light_purple" />
+
+            <ImageView
+                android:id="@+id/img_delete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/delete"
+                app:tint="@color/light_purple" />
         </TableRow>
     </TableLayout>
-
-
 </androidx.appcompat.widget.LinearLayoutCompat>
