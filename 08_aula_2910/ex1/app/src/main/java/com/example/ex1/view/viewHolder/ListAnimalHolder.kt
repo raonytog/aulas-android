@@ -8,8 +8,9 @@ class ListAnimalHolder(private val binding: AnimalLineBinding) : RecyclerView.Vi
     fun bindVH(prod: AnimalModel, onDeleteClick: (AnimalModel) -> Unit) {
         binding.textAnimalName.text = prod.name
         binding.textAnimalId.text = prod.id.toString()
-        binding.imgDelete.setOnClickListener {
+        binding.imgDelete.setOnLongClickListener {
             onDeleteClick(prod)
+            true
         }
     }
 }

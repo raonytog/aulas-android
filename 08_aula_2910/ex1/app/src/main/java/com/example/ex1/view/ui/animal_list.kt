@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ex1.R
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ex1.data.room.AppDatabase
 import com.example.ex1.databinding.ActivityAnimalListBinding
@@ -53,7 +54,7 @@ class animal_list : AppCompatActivity(), View.OnClickListener {
     }
 
     fun setBinding() {
-        binding.recyclerListAnimal.layoutManager = LinearLayoutManager(this)
+        binding.recyclerListAnimal.layoutManager = GridLayoutManager(this, 2)
         binding.recyclerListAnimal.adapter = adapter
         binding.imgAdd.setOnClickListener(this)
     }
