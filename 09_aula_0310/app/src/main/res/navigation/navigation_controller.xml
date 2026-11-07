@@ -58,6 +58,11 @@
         android:id="@+id/resultScreen"
         android:name="com.example.myapplication.view.ui.ResultScreen"
         android:label="activity_result_screen"
-        tools:layout="@layout/activity_result_screen" />
+        tools:layout="@layout/activity_result_screen" >
+        <argument
+            android:name="PokemonName"
+            app:argType="string"
+            android:defaultValue="Pikachu" />
+    </activity>
 
 </navigation>

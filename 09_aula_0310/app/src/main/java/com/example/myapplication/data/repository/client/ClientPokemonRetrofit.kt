@@ -5,7 +5,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ClientRetrofitBandeiras {
+class ClientPokemonRetrofit {
     companion object {
         private lateinit var INSTANCE: Retrofit
 

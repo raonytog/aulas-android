@@ -21,4 +21,11 @@
     <string name="default_value">NONE</string>
     <string name="type">NONE</string>
 
+    <!-- toasts logg -->
+    <string name="toast_error_not_found_pokemon">Pokemon não encontrado ou informado!</string>
+    <string name="toast_found_pokemon">Pokemon encontrado!</string>
+
+
+
+
 </resources>
