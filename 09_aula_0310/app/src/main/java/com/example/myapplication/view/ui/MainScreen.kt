@@ -6,6 +6,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivitySearchScreenBinding
@@ -33,6 +36,12 @@ class MainScreen : AppCompatActivity(), View.OnClickListener {
         setBinding()
     }
 
+    fun clearColor() {
+        binding.imgSearch.clearColorFilter()
+        binding.imgFavorite.clearColorFilter()
+        binding.imgList.clearColorFilter()
+    }
+
     fun setup() {
         binding.imgSearch.clearColorFilter()
         binding.imgSearch.setColorFilter(getColor(R.color.white))
@@ -49,19 +58,25 @@ class MainScreen : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
-//        val navController = navHostFragment.navController
-//
-//        when (view.id) {
-//            R.id.img_search -> {
-//                navController.navigate(R.id.fragmentSearch)
-//            }
-//            R.id.img_favorite -> {
-//                navController.navigate(R.id.fragmentFavorite)
-//            }
-//            R.id.img_list -> {
-//                navController.navigate(R.id.fragmentList)
-//            }
-//        }
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        val whiteColor = getColor(R.color.white)
+        clearColor()
+
+        when (view.id) {
+            R.id.img_search -> {
+                navController.navigate(R.id.fragmentSearch)
+                binding.imgSearch.setColorFilter(whiteColor)
+            }
+            R.id.img_favorite -> {
+                navController.navigate(R.id.fragmentFavorite)
+                binding.imgFavorite.setColorFilter(whiteColor)
+            }
+            R.id.img_list -> {
+                navController.navigate(R.id.fragmentList)
+                binding.imgList.setColorFilter(whiteColor)
+            }
+        }
     }
 }
