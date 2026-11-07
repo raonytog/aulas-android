@@ -22,7 +22,7 @@ class SplashScreen : AppCompatActivity() {
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, SearchScreen::class.java))
+            startActivity(Intent(this, MainScreen::class.java))
             finish()
         }, 2000)
     }

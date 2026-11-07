@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_mng"
+    app:startDestination="@id/fragmentSearch"> <!-- Aba principal que abre primeiro -->
+
+    <!-- Aba 1: Busca -->
+    <fragment
+        android:id="@+id/fragmentSearch"
+        android:name="com.example.myapplication.view.fragments.FragmentSearch"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_fragmentSearch_to_resultScreen"
+            app:destination="@id/resultScreen" />
+        <action
+            android:id="@+id/action_fragmentSearch_to_fragmentList"
+            app:destination="@id/fragmentList" />
+    </fragment>
+
+    <!-- Aba 2: Favoritos -->
+    <fragment
+        android:id="@+id/fragmentFavorite"
+        android:name="com.example.myapplication.view.fragments.FragmentFavorite"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_fragmentFavorite_to_resultScreen"
+            app:destination="@id/resultScreen" />
+        <action
+            android:id="@+id/action_fragmentFavorite_to_fragmentList"
+            app:destination="@id/fragmentList" />
+        <action
+            android:id="@+id/action_fragmentFavorite_to_resultScreen2"
+            app:destination="@id/resultScreen" />
+    </fragment>
+
+    <!-- Aba 3: Lista -->
+    <fragment
+        android:id="@+id/fragmentList"
+        android:name="com.example.myapplication.view.fragments.FragmentList"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_fragmentList_to_resultScreen"
+            app:destination="@id/resultScreen" />
+        <action
+            android:id="@+id/action_fragmentList_to_fragmentSearch"
+            app:destination="@id/fragmentSearch" />
+        <action
+            android:id="@+id/action_fragmentList_to_resultScreen2"
+            app:destination="@id/resultScreen" />
+    </fragment>
+
+    <!-- Tela de Resultado (abre por cima dos fragments) -->
+    <activity
+        android:id="@+id/resultScreen"
+        android:name="com.example.myapplication.view.ui.ResultScreen"
+        android:label="activity_result_screen"
+        tools:layout="@layout/activity_result_screen" />
+
+</navigation>

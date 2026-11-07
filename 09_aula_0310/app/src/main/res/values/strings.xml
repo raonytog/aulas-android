@@ -1,7 +1,24 @@
 <resources>
     <string name="app_name">MyPokeList</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit_pokemon_name">Nome do pokemon</string>
     <string name="button_find_pokemon">Buscar</string>
+
+    <string name="pokemon_name">Pikachu</string>
+    <string name="pokemon_all_list">Lista de pokemons</string>
+    <string name="pokemon_favorite_list">Meus favoritos</string>
+
+    <!-- RESULTS -->
+    <string name="pokemon_result_back">Voltar</string>
+    <string name="PS">PS</string>
+    <string name="ATK">Ataque</string>
+    <string name="DEF">Defesa</string>
+    <string name="SPATK">Atq. Es.</string>
+    <string name="SPDEF">Def. Es.</string>
+    <string name="SP">Velocidade</string>
+
+    <string name="default_value">NONE</string>
+    <string name="type">NONE</string>
+
 </resources>

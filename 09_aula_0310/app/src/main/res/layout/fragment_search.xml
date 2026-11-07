@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".view.ui.FragmentSearch">
+    tools:context=".view.fragments.FragmentSearch">
 
     <ImageView
         android:id="@+id/img_pikachu"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/pokemon_pikachu"
-        android:tint="@color/light_red"
+        app:tint="@color/red_200"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/edit_pokemon_name"/>
@@ -35,7 +35,7 @@
         android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/red_100"
         android:text="@string/button_find_pokemon"
         app:layout_constraintTop_toBottomOf="@id/edit_pokemon_name"
         app:layout_constraintStart_toStartOf="parent"

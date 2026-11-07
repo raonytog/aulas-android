@@ -5,6 +5,83 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".view.ui.ResultScreen">
+
+    <LinearLayout
+        android:id="@+id/linear_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/arrow_back"/>
+
+            <TextView
+                android:layout_marginStart="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="@string/pokemon_result_back"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/pokemon_pikachu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_back"/>
+
+    <TableLayout
+        android:id="@+id/table_stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="16dp">
+
+        <TableRow>
+            <TextView android:text="@string/PS" android:layout_marginEnd="10dp"/>
+            <TextView android:text="@string/default_value"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="@string/ATK" android:layout_marginEnd="10dp"/>
+            <TextView android:text="@string/default_value"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="@string/DEF" android:layout_marginEnd="10dp"/>
+            <TextView android:text="@string/default_value"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="@string/SPATK" android:layout_marginEnd="10dp"/>
+            <TextView android:text="@string/default_value"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="@string/SPDEF" android:layout_marginEnd="10dp"/>
+            <TextView android:text="@string/default_value"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="@string/SP" android:layout_marginEnd="10dp"/>
+            <TextView android:text="@string/default_value"/>
+        </TableRow>
+
+    </TableLayout>
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
