@@ -13,7 +13,7 @@ class PokemonLineViewHolder (private val binding: PokemonLineBinding) : Recycler
         onDeleteClick: (PokemonModel) -> Unit = {},
         onItemClick: (PokemonModel) -> Unit = {}
     ) {
-        binding.textPokemonName.text = pokemon.name
+        binding.textPokemonName.text = pokemon.name.replaceFirstChar { it.uppercase() }
 
         Glide.with( binding.root )
             .load(pokemon.sprite)

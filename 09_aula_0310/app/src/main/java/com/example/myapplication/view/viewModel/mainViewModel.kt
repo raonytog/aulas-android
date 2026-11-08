@@ -92,4 +92,19 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
             }
         })
     }
+
+    fun checkPokemonExists(pokemonName: String, callback: (Boolean) -> Unit) {
+        val api = ClientPokemonRetrofit.createService(PokemonService::class.java)
+        val request: Call<PokemonEntity> = api.getPokemonFromName(pokemonName.lowercase().trim())
+
+        request.enqueue(object : Callback<PokemonEntity> {
+            override fun onResponse(call: Call<PokemonEntity>, response: Response<PokemonEntity>) {
+                callback(response.isSuccessful && response.body() != null)
+            }
+
+            override fun onFailure(call: Call<PokemonEntity>, t: Throwable) {
+                callback(false)
+            }
+        })
+    }
 }

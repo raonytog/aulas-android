@@ -21,13 +21,16 @@ class FragmentSearch : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainVM: mainViewModel
 
+    private val key = Constantes.POKEMON.LIST.keys.random()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     fun setup() {
-        mainVM.requestPokemon(Constantes.POKEMON.LIST.random())
+        mainVM.requestPokemon(key)
+        binding.textCuriosidade.setText(Constantes.POKEMON.LIST.get( key))
         mainVM.getPokemon().observe(viewLifecycleOwner) { pokemon ->
             pokemon?.let { entity ->
                 val pkmModel = entityToModel(entity)
@@ -45,16 +48,29 @@ class FragmentSearch : Fragment() {
 
         val duration = Toast.LENGTH_SHORT
         binding.buttonFindPokemon.setOnClickListener {
-            val pokemonName = binding.editPokemonName.text.toString()
-            if (pokemonName.isNotEmpty()) {
-                val intent = Intent(requireContext(), ResultScreen::class.java).apply {
-                    putExtra("PokemonName", pokemonName)
-                }
-                Toast.makeText(requireContext(), getText(R.string.toast_found_pokemon), duration).show()
-                startActivity(intent)
+            val pokemonName = binding.editPokemonName.text.toString().trim()
 
-            } else {
-                Toast.makeText(requireContext(), getText(R.string.toast_error_not_found_pokemon),duration).show()
+            if (pokemonName.isEmpty()) { // se o nome estiver vazio
+                Toast.makeText(requireContext(), getText(R.string.toast_error_empty_pokemon_name), duration).show()
+                return@setOnClickListener
+            }
+
+            mainVM.checkPokemonExists(pokemonName) { exists ->
+                if (isAdded) {
+                    if (exists) { // se existe o pokemon
+                        val intent = Intent(requireContext(), ResultScreen::class.java).apply {
+                            putExtra("PokemonName", pokemonName)
+                        }
+
+                        if (pokemonName == key) Toast.makeText(requireContext(), getText(R.string.toast_found_pokemon), duration).show()
+                        else Toast.makeText(requireContext(), getText(R.string.toast_another_found_pokemon), duration).show()
+
+                        startActivity(intent)
+
+                    } else { // se nao existe
+                        Toast.makeText(requireContext(), getText(R.string.toast_error_not_found_pokemon), duration).show()
+                    }
+                }
             }
         }
     }

@@ -27,8 +27,10 @@
     <string name="type">NONE</string>
 
     <!-- toasts logg -->
-    <string name="toast_error_not_found_pokemon">Pokemon não encontrado ou informado!</string>
+    <string name="toast_error_empty_pokemon_name">Nome do pokemon não infoormado!</string>
+    <string name="toast_error_not_found_pokemon">Pokemon não encontrado!</string>
     <string name="toast_found_pokemon">Pokemon encontrado!</string>
+    <string name="toast_another_found_pokemon">Outro pokemon foi encontrado!</string>
     <string name="toast_error_already_favorite">Pokemon já está nos favoritos!</string>
     <string name="toast_set_favorite">Pokemon adicionado como favorito!</string>
     <string name="toast_del_favorite">Pokemon removido como favorito!</string>

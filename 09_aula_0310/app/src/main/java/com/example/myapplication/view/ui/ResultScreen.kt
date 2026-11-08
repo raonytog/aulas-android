@@ -45,8 +45,6 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
     fun setup() {
         val pokemonName = intent.getStringExtra("PokemonName") ?: "pikachu"
         binding.textPokemonName.text = pokemonName
-        Log.d("PokemonName", pokemonName)
-        Log.d("isRegisteredPokemon func", mainVM.isRegisteredPokemon( pokemonName ).toString())
 
         if ( mainVM.isRegisteredPokemon( pokemonName )) {
             binding.imgFavorite.setImageResource(R.drawable.favorite_full)
@@ -66,6 +64,7 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
 
                 binding.textType1.text = type1Name
                 binding.textType1.setBackgroundColor(ContextCompat.getColor(this, getTypeColor(type1Name)))
+                binding.main.background.setTint(ContextCompat.getColor(this, getTypeColor(type1Name)))
 
                 if (type1Name == type2Name) {
                     binding.textType2.visibility = View.GONE
