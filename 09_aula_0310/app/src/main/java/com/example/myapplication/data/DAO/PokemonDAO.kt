@@ -1,5 +1,6 @@
 package com.example.myapplication.data.DAO
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -20,7 +21,7 @@ interface PokemonDAO {
     fun delete(pokemon: PokemonModel): Int
 
     @Query("SELECT * FROM pokemon")
-    fun getAll(): List<PokemonModel>
+    fun getAll(): LiveData<List<PokemonModel>>
 
     @Query("SELECT * FROM pokemon WHERE name = :name")
     fun getByName(name: String): PokemonModel

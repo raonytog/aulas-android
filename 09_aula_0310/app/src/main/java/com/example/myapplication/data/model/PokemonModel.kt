@@ -13,6 +13,9 @@ data class PokemonModel(
     @ColumnInfo(name = "name")
     val name: String,
 
+    @ColumnInfo(name = "sprite")
+    val sprite: String,
+
     @ColumnInfo(name = "type")
     val type: String,
 

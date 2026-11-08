@@ -24,6 +24,7 @@
     <!-- toasts logg -->
     <string name="toast_error_not_found_pokemon">Pokemon não encontrado ou informado!</string>
     <string name="toast_found_pokemon">Pokemon encontrado!</string>
+    <string name="toast_error_already_favorite">Pokemon já está nos favoritos!</string>
 
 
 

@@ -5,40 +5,87 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.myapplication.R
+import com.example.myapplication.data.model.PokemonModel
 import com.example.myapplication.data.repository.client.ClientPokemonRetrofit
 import com.example.myapplication.data.repository.entity.PokemonEntity
+import com.example.myapplication.data.repository.entity.PokemonListResponse
+import com.example.myapplication.data.repository.entity.PokemonResultEntity
 import com.example.myapplication.data.repository.service.PokemonService
+import com.example.myapplication.data.room.AppDatabase
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class mainViewModel(application: Application): AndroidViewModel(application) {
-    var qtd_lista: Int = 1
+    var qtd_lista: Int = 20
+    private val db = AppDatabase.getDatabase(application.applicationContext).AnimalDAO()
 
     private val errorMensage = MutableLiveData<String>()
     fun getErrorMensage(): LiveData<String> { return errorMensage }
 
-    private val pokemonList = MutableLiveData<List<PokemonEntity>>()
-    fun getPokemonList(): LiveData<List<PokemonEntity>> { return pokemonList }
+    private val pokemonList = MutableLiveData<List<PokemonResultEntity>>()
+    fun getPokemonList(): LiveData<List<PokemonResultEntity>> { return pokemonList }
 
     private val pokemon = MutableLiveData<PokemonEntity>()
     fun getPokemon(): LiveData<PokemonEntity> { return pokemon }
 
+    fun getFavoritePokemonList(): LiveData<List<PokemonModel>> { return db.getAll() }
+
+    fun addPokemon() {
+        val currentPokemon = pokemon.value ?: return
+
+        if (db.getByName( currentPokemon.name ) != null) {
+            errorMensage.value = getApplication<Application>().getString(R.string.toast_error_already_favorite)
+            return
+        }
+
+        val typeStr = currentPokemon.types.firstOrNull()?.type?.name ?: ""
+        val sprite = currentPokemon.sprites.other.officialArtwork.frontDefault ?: ""
+        val hp = currentPokemon.stats.getOrNull(0)?.baseStat ?: 0
+        val attack = currentPokemon.stats.getOrNull(1)?.baseStat ?: 0
+        val defense = currentPokemon.stats.getOrNull(2)?.baseStat ?: 0
+        val spAtk = currentPokemon.stats.getOrNull(3)?.baseStat ?: 0
+        val spDef = currentPokemon.stats.getOrNull(4)?.baseStat ?: 0
+        val speed = currentPokemon.stats.getOrNull(5)?.baseStat ?: 0
+
+        val pkm = PokemonModel(
+            name = currentPokemon.name,
+            sprite = sprite,
+            type = typeStr,
+            hp = hp,
+            attack = attack,
+            defense = defense,
+            spAtk = spAtk,
+            spDef = spDef,
+            speed = speed
+        )
+        db.insert(pkm)
+    }
+
+    fun isRegistredPokemon( name: String): Boolean {
+        val p = db.getByName( name )
+        return p.name.isNotEmpty()
+    }
+
+    fun deletePokemon( pokemon: PokemonModel) {
+        db.delete(pokemon)
+    }
+
     fun requestList() {
         val api = ClientPokemonRetrofit.createService(PokemonService::class.java)
-        val request: Call<List<PokemonEntity>> = api.getAllPokemons(this.qtd_lista)
+        val request: Call<PokemonListResponse> = api.getAllPokemons(this.qtd_lista)
 
-        request.enqueue(object : Callback<List<PokemonEntity>> {
-            override fun onResponse(call: Call<List<PokemonEntity>>, response: Response<List<PokemonEntity>>) {
-                if (response.isSuccessful) {
-                    pokemonList.value = response.body()
+        request.enqueue(object : Callback<PokemonListResponse> {
+            override fun onResponse(call: Call<PokemonListResponse>, response: Response<PokemonListResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    pokemonList.value = response.body()?.results
                 } else {
                     errorMensage.value = getApplication<Application>().getString(R.string.toast_error_not_found_pokemon)
                 }
             }
 
-            override fun onFailure(call: Call<List<PokemonEntity>>, t: Throwable) {
+            override fun onFailure(call: Call<PokemonListResponse>, t: Throwable) {
                 errorMensage.value = getApplication<Application>().getString(R.string.toast_error_not_found_pokemon)
             }
         })

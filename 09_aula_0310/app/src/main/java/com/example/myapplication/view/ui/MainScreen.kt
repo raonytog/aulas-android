@@ -68,16 +68,19 @@ class MainScreen : AppCompatActivity(), View.OnClickListener {
         when (view.id) {
             R.id.img_search -> {
                 navController.navigate(R.id.fragmentSearch)
+                binding.imgFavorite.setImageResource(R.drawable.favorite)
                 binding.imgSearch.setColorFilter(whiteColor)
             }
 
             R.id.img_favorite -> {
                 navController.navigate(R.id.fragmentFavorite)
+                binding.imgFavorite.setImageResource(R.drawable.favorite_full)
                 binding.imgFavorite.setColorFilter(whiteColor)
             }
 
             R.id.img_list -> {
                 navController.navigate(R.id.fragmentList)
+                binding.imgFavorite.setImageResource(R.drawable.favorite)
                 binding.imgList.setColorFilter(whiteColor)
             }
         }
