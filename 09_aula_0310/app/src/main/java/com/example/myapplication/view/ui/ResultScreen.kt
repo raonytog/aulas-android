@@ -1,6 +1,7 @@
 package com.example.myapplication.view.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -11,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
+import com.example.myapplication.data.model.entityToModel
 import com.example.myapplication.databinding.ActivityResultScreenBinding
 import com.example.myapplication.view.viewModel.mainViewModel
 
@@ -43,15 +45,15 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
     fun setup() {
         val pokemonName = intent.getStringExtra("PokemonName") ?: "pikachu"
         binding.textPokemonName.text = pokemonName
+        Log.d("PokemonName", pokemonName)
+        Log.d("isRegisteredPokemon func", mainVM.isRegisteredPokemon( pokemonName ).toString())
 
-        if (mainVM.isRegistredPokemon( pokemonName )) {
+        if ( mainVM.isRegisteredPokemon( pokemonName )) {
             binding.imgFavorite.setImageResource(R.drawable.favorite_full)
             binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
         }
 
         mainVM.requestPokemon(pokemonName)
-
-
     }
 
     fun setObserver() {
@@ -84,7 +86,7 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
 
                 // Carrega a imagem
                 Glide.with(this)
-                    .load(it.sprites.other?.officialArtwork?.frontDefault)
+                    .load(it.sprites.other.officialArtwork.frontDefault)
                     .into(binding.imgPokemon)
             }
         }
@@ -105,14 +107,27 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
         when(view.id) {
             R.id.img_back -> finish()
             R.id.img_favorite -> {
-                mainVM.addPokemon()
-                binding.imgFavorite.setImageResource(R.drawable.favorite_full)
-                Toast.makeText(this, "Pokémon salvo nos favoritos!", Toast.LENGTH_SHORT).show()
+
+                // se o pokemon ja ta registrado como favorito
+                if (mainVM.isRegisteredPokemon(binding.textPokemonName.text.toString() )) {
+                    val pkmEntity = mainVM.getPokemon().value
+                    if (pkmEntity != null) {
+                        val pkmModel = entityToModel(pkmEntity)
+                        mainVM.deletePokemon( pkmModel )
+                        binding.imgFavorite.setImageResource(R.drawable.favorite)
+                        binding.imgFavorite.clearColorFilter()
+                        Toast.makeText(this, getText(R.string.toast_del_favorite), Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                        mainVM.addPokemon()
+                        binding.imgFavorite.setImageResource(R.drawable.favorite_full)
+                        binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
+                        Toast.makeText(this, getText(R.string.toast_set_favorite), Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
 
-    // Função auxiliar que mapeia a string do tipo para o seu arquivo de cor xml
     private fun getTypeColor(type: String): Int {
         return when (type.lowercase()) {
             "bug" -> R.color.type_bug

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MyPokeList</string>
+    <string name="who_is_that_pokemon">Quem é esse pokemon?</string>
+
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit_pokemon_name">Nome do pokemon</string>
@@ -28,6 +30,8 @@
     <string name="toast_error_not_found_pokemon">Pokemon não encontrado ou informado!</string>
     <string name="toast_found_pokemon">Pokemon encontrado!</string>
     <string name="toast_error_already_favorite">Pokemon já está nos favoritos!</string>
+    <string name="toast_set_favorite">Pokemon adicionado como favorito!</string>
+    <string name="toast_del_favorite">Pokemon removido como favorito!</string>
 
 
 

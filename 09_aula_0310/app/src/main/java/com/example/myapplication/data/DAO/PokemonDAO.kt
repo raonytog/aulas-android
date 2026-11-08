@@ -23,6 +23,6 @@ interface PokemonDAO {
     @Query("SELECT * FROM pokemon")
     fun getAll(): LiveData<List<PokemonModel>>
 
-    @Query("SELECT * FROM pokemon WHERE name = :name")
-    fun getByName(name: String): PokemonModel
+    @Query("SELECT * FROM pokemon WHERE LOWER(name) = LOWER(:name) LIMIT 1")
+    fun getByName(name: String): PokemonModel?
 }

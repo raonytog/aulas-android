@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.myapplication.R
 import com.example.myapplication.data.model.PokemonModel
+import com.example.myapplication.data.model.entityToModel
 import com.example.myapplication.data.repository.client.ClientPokemonRetrofit
 import com.example.myapplication.data.repository.entity.PokemonEntity
 import com.example.myapplication.data.repository.entity.PokemonListResponse
@@ -35,41 +36,23 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
     fun addPokemon() {
         val currentPokemon = pokemon.value ?: return
 
-        if (isRegistredPokemon(currentPokemon.name) != null) {
+        if (isRegisteredPokemon(currentPokemon.name)) {
             errorMensage.value = getApplication<Application>().getString(R.string.toast_error_already_favorite)
             return
         }
 
-        val typeStr = currentPokemon.types.firstOrNull()?.type?.name ?: ""
-        val sprite = currentPokemon.sprites.other.officialArtwork.frontDefault ?: ""
-        val hp = currentPokemon.stats.getOrNull(0)?.baseStat ?: 0
-        val attack = currentPokemon.stats.getOrNull(1)?.baseStat ?: 0
-        val defense = currentPokemon.stats.getOrNull(2)?.baseStat ?: 0
-        val spAtk = currentPokemon.stats.getOrNull(3)?.baseStat ?: 0
-        val spDef = currentPokemon.stats.getOrNull(4)?.baseStat ?: 0
-        val speed = currentPokemon.stats.getOrNull(5)?.baseStat ?: 0
-
-        val pkm = PokemonModel(
-            name = currentPokemon.name.replaceFirstChar { it.uppercase() },
-            sprite = sprite,
-            type = typeStr,
-            hp = hp,
-            attack = attack,
-            defense = defense,
-            spAtk = spAtk,
-            spDef = spDef,
-            speed = speed
-        )
-        db.insert(pkm)
+        val pkmModel = entityToModel( currentPokemon )
+        db.insert(pkmModel)
     }
 
-    fun isRegistredPokemon( name: String): Boolean {
+    fun isRegisteredPokemon(name: String): Boolean {
         val p = db.getByName( name )
         return p != null
     }
 
     fun deletePokemon( pokemon: PokemonModel) {
-        db.delete(pokemon)
+        val target = if (pokemon.id == 0) db.getByName(pokemon.name) ?: pokemon else pokemon
+        db.delete(target)
     }
 
     fun requestList() {
