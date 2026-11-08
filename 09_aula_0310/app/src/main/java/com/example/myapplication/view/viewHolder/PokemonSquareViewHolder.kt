@@ -7,7 +7,7 @@ import com.example.myapplication.databinding.PokemonSquareBinding
 
 class PokemonSquareViewHolder (private val binding: PokemonSquareBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bindVH(pokemon: PokemonResultEntity, onItemClick: (PokemonResultEntity) -> Unit = {}) {
-        binding.textPokemonName.text = pokemon.name
+        binding.textPokemonName.text = pokemon.name.replaceFirstChar { it.uppercase() }
 
         Glide.with( binding.root )
             .load(pokemon.spriteUrl)

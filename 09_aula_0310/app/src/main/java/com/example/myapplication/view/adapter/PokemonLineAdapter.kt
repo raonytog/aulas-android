@@ -7,7 +7,10 @@ import com.example.myapplication.data.model.PokemonModel
 import com.example.myapplication.databinding.PokemonLineBinding
 import com.example.myapplication.view.viewHolder.PokemonLineViewHolder
 
-class PokemonLineAdapter(private val onDeleteClick: (PokemonModel) -> Unit = {}): RecyclerView.Adapter<PokemonLineViewHolder>() {
+class PokemonLineAdapter(
+    private val onDeleteClick: (PokemonModel) -> Unit = {},
+    private val onItemClick: (PokemonModel) -> Unit = {}
+) : RecyclerView.Adapter<PokemonLineViewHolder>() {
     private var pokemonList: List<PokemonModel> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonLineViewHolder {
@@ -16,7 +19,7 @@ class PokemonLineAdapter(private val onDeleteClick: (PokemonModel) -> Unit = {})
     }
 
     override fun onBindViewHolder(holder: PokemonLineViewHolder, position: Int) {
-        holder.bindVH(pokemonList[position], onDeleteClick)
+        holder.bindVH(pokemonList[position], onDeleteClick, onItemClick)
     }
 
     override fun getItemCount(): Int {

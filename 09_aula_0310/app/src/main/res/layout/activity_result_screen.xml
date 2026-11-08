@@ -35,7 +35,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/icon_favorite"
+        android:id="@+id/img_favorite"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:src="@drawable/favorite"
@@ -94,6 +94,42 @@
             android:text="@string/default_value"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layout_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_types"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_male"
+            android:background="@color/blue_300"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/white"
+            app:drawableTint="@color/white"
+            android:drawableLeft="@drawable/female"
+            android:text="@string/male"/>
+
+        <TextView
+            android:id="@+id/text_female"
+            android:background="@color/type_psychic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/white"
+            app:drawableTint="@color/white"
+            android:drawableLeft="@drawable/female"
+            android:text="@string/female"/>
+    </LinearLayout>
+
     <TableLayout
         android:id="@+id/table_stats"
         android:layout_width="wrap_content"
@@ -101,7 +137,7 @@
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_genre"
         android:layout_marginBottom="40dp"
         android:stretchColumns="2">
 

@@ -35,7 +35,7 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
     fun addPokemon() {
         val currentPokemon = pokemon.value ?: return
 
-        if (db.getByName( currentPokemon.name ) != null) {
+        if (isRegistredPokemon(currentPokemon.name) != null) {
             errorMensage.value = getApplication<Application>().getString(R.string.toast_error_already_favorite)
             return
         }
@@ -50,7 +50,7 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
         val speed = currentPokemon.stats.getOrNull(5)?.baseStat ?: 0
 
         val pkm = PokemonModel(
-            name = currentPokemon.name,
+            name = currentPokemon.name.replaceFirstChar { it.uppercase() },
             sprite = sprite,
             type = typeStr,
             hp = hp,
@@ -65,7 +65,7 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
 
     fun isRegistredPokemon( name: String): Boolean {
         val p = db.getByName( name )
-        return p.name.isNotEmpty()
+        return p != null
     }
 
     fun deletePokemon( pokemon: PokemonModel) {

@@ -44,16 +44,23 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
         val pokemonName = intent.getStringExtra("PokemonName") ?: "pikachu"
         binding.textPokemonName.text = pokemonName
 
+        if (mainVM.isRegistredPokemon( pokemonName )) {
+            binding.imgFavorite.setImageResource(R.drawable.favorite_full)
+            binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
+        }
+
         mainVM.requestPokemon(pokemonName)
+
+
     }
 
     fun setObserver() {
         mainVM.getPokemon().observe(this) { pokemon ->
             pokemon?.let {
-                binding.textPokemonName.text = it.name
+                binding.textPokemonName.text = it.name.replaceFirstChar { it.uppercase() }
 
-                val type1Name = it.types.first().type.name
-                val type2Name = it.types.last().type.name
+                val type1Name = it.types.first().type.name.replaceFirstChar { it.uppercase() }
+                val type2Name = it.types.last().type.name.replaceFirstChar { it.uppercase() }
 
                 binding.textType1.text = type1Name
                 binding.textType1.setBackgroundColor(ContextCompat.getColor(this, getTypeColor(type1Name)))
@@ -91,21 +98,15 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
 
     fun setListener() {
         binding.imgBack.setOnClickListener(this)
-        binding.iconFavorite.setOnClickListener(this)
+        binding.imgFavorite.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
         when(view.id) {
             R.id.img_back -> finish()
-            R.id.icon_favorite -> {
-
+            R.id.img_favorite -> {
                 mainVM.addPokemon()
-
-
-                binding.iconFavorite.setImageResource(R.drawable.favorite_full)
-
-                binding.iconFavorite.setImageResource(R.drawable.favorite_full)
-                binding.iconFavorite.setColorFilter()
+                binding.imgFavorite.setImageResource(R.drawable.favorite_full)
                 Toast.makeText(this, "Pokémon salvo nos favoritos!", Toast.LENGTH_SHORT).show()
             }
         }
@@ -132,7 +133,7 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
             "rock" -> R.color.type_rock
             "steel" -> R.color.type_steel
             "water" -> R.color.type_water
-            else -> R.color.black // cor padrão caso aconteça algo inesperado
+            else -> R.color.black
         }
     }
 }

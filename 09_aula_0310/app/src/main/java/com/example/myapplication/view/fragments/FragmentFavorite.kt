@@ -1,5 +1,6 @@
 package com.example.myapplication.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentFavoriteBinding
 import com.example.myapplication.view.adapter.PokemonLineAdapter
+import com.example.myapplication.view.ui.ResultScreen
 import com.example.myapplication.view.viewModel.mainViewModel
 
 class FragmentFavorite : Fragment() {
@@ -26,9 +28,15 @@ class FragmentFavorite : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mainVM = ViewModelProvider(requireActivity())[mainViewModel::class.java]
-        adapter = PokemonLineAdapter { pokemonToDelete ->
-            mainVM.deletePokemon(pokemonToDelete)
-        }
+        adapter = PokemonLineAdapter(
+            onDeleteClick = { pokemonToDelete -> mainVM.deletePokemon(pokemonToDelete) },
+            onItemClick = { pokemonClicked ->
+                val intent = Intent(requireContext(), ResultScreen::class.java).apply {
+                    putExtra("PokemonName", pokemonClicked.name)
+                }
+                startActivity(intent)
+            }
+        )
 
         binding.recycleFavoriteList.layoutManager = LinearLayoutManager(requireContext())
         binding.recycleFavoriteList.adapter = adapter

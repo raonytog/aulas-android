@@ -11,12 +11,15 @@
 
     <!-- RESULTS -->
     <string name="pokemon_result_back">Voltar</string>
-    <string name="PS">PS</string>
+    <string name="PS">HP</string>
     <string name="ATK">Ataque</string>
     <string name="DEF">Defesa</string>
     <string name="SPATK">Atq. Es.</string>
     <string name="SPDEF">Def. Es.</string>
     <string name="SP">Velocidade</string>
+    <string name="male">Macho</string>
+    <string name="female">Femea</string>
+
 
     <string name="default_value">NONE</string>
     <string name="type">NONE</string>

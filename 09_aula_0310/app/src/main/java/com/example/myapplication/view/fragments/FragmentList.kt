@@ -47,7 +47,7 @@ class FragmentList : Fragment() {
         }
 
         binding.imgUpload.setOnClickListener {
-            mainVM.qtd_lista += 10
+            mainVM.qtd_lista += 20
             mainVM.requestList()
         }
     }
