@@ -24,6 +24,7 @@
 
 
     <string name="default_value">NONE</string>
+    <string name="default_value_number">0</string>
     <string name="type">NONE</string>
 
     <!-- toasts logg -->
@@ -34,6 +35,13 @@
     <string name="toast_error_already_favorite">Pokemon já está nos favoritos!</string>
     <string name="toast_set_favorite">Pokemon adicionado como favorito!</string>
     <string name="toast_del_favorite">Pokemon removido como favorito!</string>
+
+    <string name="correct_pokemon"> Adivinhados:</string>
+    <string name="wrong_pokemon"> Errados:</string>
+    <string name="total_pokemon"> Total:</string>
+
+
+
 
 
 

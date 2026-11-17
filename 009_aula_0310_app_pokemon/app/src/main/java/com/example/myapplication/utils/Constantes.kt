@@ -7,76 +7,11 @@ class Constantes {
 
     object POKEMON {
         val LIST = listOf(
-//            // Geração 1 (Kanto)
-//            "bulbasaur",
-//            "charizard",
-//            "blastoise",
-//            "pikachu",
-//            "gengar",
-//            "gyarados",
-//            "eevee",
-//            "snorlax",
-//            "dragonite",
-//            "mewtwo",
-
-//            // Geração 2 (Johto)
-//            "typhlosion",
-//            "feraligatr",
-//            "ampharos",
-//            "umbreon",
-//            "scizor",
-//            "heracross",
-//            "tyranitar",
-//            "lugia",
-//            "ho-oh",
-
-//            // Geração 3 (Hoenn)
-//            "sceptile",
-//            "blaziken",
-//            "mudkip",
-//            "gardevoir",
-//            "aggron",
-//            "milotic",
-//            "absol",
-//            "salamence",
-//            "metagross",
-//            "rayquaza",
-
-//            // Geração 4 (Sinnoh)
-//            "torterra",
-//            "infernape",
-//            "empoleon",
-//            "luxray",
-//            "garchomp",
-//            "lucario",
-//            "togekiss",
-//            "giratina-altered",
-
-//            // Geração 5 (Unova)
-//            "serperior",
-//            "zoroark",
-//            "chandelure",
-//            "axew",
-//            "haxorus",
-//            "volcarona",
-
-//            // Geração 6 (Kalos)
-//            "greninja",
-//            "talonflame",
-//            "sylveon",
-//            "goodra",
-
-            // Geração 7 (Alola)
             "decidueye",
-//            "mimikyu-disguised",
-
-            // Geração 8 & 9 (Galar & Paldea)
             "corviknight",
             "dragapult",
             "tinkaton",
             "ceruledge",
-
-            // random
             "thwackey",
             "shelmet",
             "calyrex",
@@ -87,7 +22,21 @@ class Constantes {
             "golisopod-mega",
             "iron-valiant",
             "feebas",
-            "deoxys-speed"
+            "deoxys-speed",
+            "sinistea",
+            "hatenna",
+            "applin",
+            "azelf",
+            "falinks-mega",
+            "bruxish",
+            "plusie",
+            "electrode-hisui",
+            "pachirisu",
+            "larvitar",
+            "roserade",
+            "dustox",
+            "uxie",
+            "shelgon"
         )
     }
 }

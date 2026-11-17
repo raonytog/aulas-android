@@ -55,4 +55,29 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_find_pokemon">
+
+            <TableRow>
+                <TextView android:text="@string/correct_pokemon" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+                <TextView android:id="@+id/text_correct" android:text="@string/default_value_number" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView android:text="@string/wrong_pokemon" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+                <TextView android:id="@+id/text_wrong" android:text="@string/default_value_number" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView android:text="@string/total_pokemon" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+                <TextView android:id="@+id/text_total" android:text="@string/default_value_number" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            </TableRow>
+        </TableLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

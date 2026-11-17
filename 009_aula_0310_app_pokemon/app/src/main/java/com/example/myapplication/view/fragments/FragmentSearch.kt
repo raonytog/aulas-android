@@ -37,6 +37,18 @@ class FragmentSearch : Fragment() {
                     .into(binding.imgPikachu)
             }
         }
+
+        mainVM.getQtdAcertados().observe(viewLifecycleOwner) { correct ->
+            binding.textCorrect.text = correct.toString()
+            val wrong = mainVM.getQtdErrados().value ?: 0
+            binding.textTotal.text = (correct + wrong).toString()
+        }
+
+        mainVM.getQtdErrados().observe(viewLifecycleOwner) { wrong ->
+            binding.textWrong.text = wrong.toString()
+            val correct = mainVM.getQtdAcertados().value ?: 0
+            binding.textTotal.text = (correct + wrong).toString()
+        }
     }
 
     private fun loadRandomPokemon() {
@@ -46,7 +58,7 @@ class FragmentSearch : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainVM = ViewModelProvider(this).get(mainViewModel::class.java)
+        mainVM = ViewModelProvider(requireActivity())[mainViewModel::class.java]
         setup()
 
         val duration = Toast.LENGTH_SHORT
@@ -65,8 +77,15 @@ class FragmentSearch : Fragment() {
                             putExtra("PokemonName", pokemonName)
                         }
 
-                        if (pokemonName == key) Toast.makeText(requireContext(), getText(R.string.toast_found_pokemon), duration).show()
-                        else Toast.makeText(requireContext(), getText(R.string.toast_another_found_pokemon), duration).show()
+                        if (pokemonName == key) {
+                            Toast.makeText(requireContext(), getText(R.string.toast_found_pokemon), duration).show()
+                            mainVM.incAcertos()
+                        }
+
+                        else {
+                            Toast.makeText(requireContext(), getText(R.string.toast_another_found_pokemon), duration).show()
+                            mainVM.incErros()
+                        }
 
                         startActivity(intent)
 

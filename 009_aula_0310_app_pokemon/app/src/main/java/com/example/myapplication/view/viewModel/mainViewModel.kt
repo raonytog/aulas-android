@@ -22,6 +22,15 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
     var qtd_lista: Int = 20
     private val db = AppDatabase.getDatabase(application.applicationContext).AnimalDAO()
 
+    private val qtdAcertados = MutableLiveData<Int>(0)
+    fun getQtdAcertados(): LiveData<Int> { return qtdAcertados }
+    fun incAcertos() { qtdAcertados.value = (qtdAcertados.value ?: 0) + 1 }
+
+    private val qtdErrados = MutableLiveData<Int>(0)
+    fun getQtdErrados(): LiveData<Int> { return qtdErrados }
+    fun incErros() { qtdErrados.value = (qtdErrados.value ?: 0) + 1 }
+
+
     private val errorMensage = MutableLiveData<String>()
     fun getErrorMensage(): LiveData<String> { return errorMensage }
 
