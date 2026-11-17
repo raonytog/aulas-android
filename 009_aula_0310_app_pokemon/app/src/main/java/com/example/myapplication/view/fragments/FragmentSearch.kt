@@ -21,7 +21,7 @@ class FragmentSearch : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mainVM: mainViewModel
 
-    private val key = Constantes.POKEMON.LIST.keys.random()
+    private var key = Constantes.POKEMON.LIST.random()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
@@ -29,8 +29,6 @@ class FragmentSearch : Fragment() {
     }
 
     fun setup() {
-        mainVM.requestPokemon(key)
-        binding.textCuriosidade.setText(Constantes.POKEMON.LIST.get( key))
         mainVM.getPokemon().observe(viewLifecycleOwner) { pokemon ->
             pokemon?.let { entity ->
                 val pkmModel = entityToModel(entity)
@@ -39,6 +37,11 @@ class FragmentSearch : Fragment() {
                     .into(binding.imgPikachu)
             }
         }
+    }
+
+    private fun loadRandomPokemon() {
+        key = Constantes.POKEMON.LIST.random()
+        mainVM.requestPokemon(key)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,6 +76,11 @@ class FragmentSearch : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadRandomPokemon()
     }
 
     override fun onDestroyView() {
