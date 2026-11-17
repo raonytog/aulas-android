@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.ui.ResultScreen">
+
+    <!-- Botão Voltar -->
+    <LinearLayout
+        android:id="@+id/linear_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/arrow_back"/>
+
+        <TextView
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:text="@string/pokemon_result_back"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_favorite"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/favorite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/linear_back"/>
+
+    <ImageView
+        android:id="@+id/img_pokemon"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/pokemon_pikachu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_back"/>
+
+    <TextView
+        android:id="@+id/text_pokemon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pokemon_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_pokemon"
+        android:layout_marginTop="16dp"
+        android:textSize="24sp" />
+
+
+    <LinearLayout
+        android:id="@+id/layout_types"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_name"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_type1"
+            android:background="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:text="@string/default_value"/>
+
+        <TextView
+            android:id="@+id/text_type2"
+            android:background="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:text="@string/default_value"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_types"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_male"
+            android:background="@color/blue_300"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/white"
+            app:drawableTint="@color/white"
+            android:drawableLeft="@drawable/female"
+            android:text="@string/male"/>
+
+        <TextView
+            android:id="@+id/text_female"
+            android:background="@color/type_psychic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/white"
+            app:drawableTint="@color/white"
+            android:drawableLeft="@drawable/female"
+            android:text="@string/female"/>
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/table_stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_genre"
+        android:layout_marginBottom="40dp"
+        android:stretchColumns="2">
+
+        <TableRow
+            android:background="#FF7A7A"
+            android:padding="8dp">
+            <TextView android:text="@string/PS" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <TextView android:id="@+id/text_ps" android:text="@string/default_value" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <LinearLayout android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+                <View android:layout_width="60dp" android:layout_height="12dp" android:background="#E60000"/>
+            </LinearLayout>
+        </TableRow>
+
+        <!-- Ataque -->
+        <TableRow
+            android:background="#FFAA66"
+            android:padding="8dp">
+            <TextView android:text="@string/ATK" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <TextView android:id="@+id/text_atk" android:text="@string/default_value" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <LinearLayout android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+                <View android:layout_width="65dp" android:layout_height="12dp" android:background="#E67300"/>
+            </LinearLayout>
+        </TableRow>
+
+        <!-- Defesa -->
+        <TableRow
+            android:background="#FFDD66"
+            android:padding="8dp">
+            <TextView android:text="@string/DEF" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <TextView android:id="@+id/text_def" android:text="@string/default_value" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <LinearLayout android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+                <View android:layout_width="60dp" android:layout_height="12dp" android:background="#E6B800"/>
+            </LinearLayout>
+        </TableRow>
+
+        <!-- Ataque Especial -->
+        <TableRow
+            android:background="#99BBFF"
+            android:padding="8dp">
+            <TextView android:text="@string/SPATK" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <TextView android:id="@+id/text_spatk" android:text="@string/default_value" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <LinearLayout android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+                <View android:layout_width="85dp" android:layout_height="12dp" android:background="#4D88FF"/>
+            </LinearLayout>
+        </TableRow>
+
+        <!-- Defesa Especial -->
+        <TableRow
+            android:background="#A3E099"
+            android:padding="8dp">
+            <TextView android:text="@string/SPDEF" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <TextView android:id="@+id/text_spdef" android:text="@string/default_value" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <LinearLayout android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+                <View android:layout_width="65dp" android:layout_height="12dp" android:background="#5CDB5C"/>
+            </LinearLayout>
+        </TableRow>
+
+        <!-- Velocidade -->
+        <TableRow
+            android:background="#FF99CC"
+            android:padding="8dp">
+            <TextView android:text="@string/SP" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <TextView android:id="@+id/text_sp" android:text="@string/default_value" android:textColor="#000000" android:layout_marginEnd="16dp"/>
+            <LinearLayout android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+                <View android:layout_width="100dp" android:layout_height="12dp" android:background="#FF3385"/>
+            </LinearLayout>
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
