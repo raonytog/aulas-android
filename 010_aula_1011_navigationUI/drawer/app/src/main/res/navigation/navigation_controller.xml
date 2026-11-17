@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_controller"
+    app:startDestination="@id/initFragment">
+
+    <fragment
+        android:id="@+id/oneFragment"
+        android:name="com.mobile.myapplication.OneFragment"
+        android:label="Tela de CARA"
+        tools:layout="@layout/fragment_one">
+        <action
+            android:id="@+id/action_oneFragment_to_twoFragment"
+            app:destination="@id/twoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/twoFragment"
+        android:name="com.mobile.myapplication.TwoFragment"
+        android:label="Tela de COROA"
+        tools:layout="@layout/fragment_two">
+        <action
+            android:id="@+id/action_twoFragment_to_oneFragment"
+            app:destination="@id/oneFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/initFragment"
+        android:name="com.mobile.myapplication.fragments.InitFragment"
+        android:label="Tela Inicial"
+        tools:layout="@layout/fragment_init">
+        <action
+            android:id="@+id/action_initFragment_to_oneFragment"
+            app:destination="@id/oneFragment" />
+        <action
+            android:id="@+id/action_initFragment_to_twoFragment"
+            app:destination="@id/twoFragment" />
+    </fragment>
+</navigation>
