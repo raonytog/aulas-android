@@ -72,4 +72,8 @@ dependencies {
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
     implementation("com.google.firebase:firebase-auth")
+
+    // Firestore
+    implementation("com.google.firebase:firebase-firestore")
+
 }

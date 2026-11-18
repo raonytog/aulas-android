@@ -29,7 +29,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         mainVM = ViewModelProvider(this)[mainViewModel::class.java]
+        setBinding()
+    }
 
+    fun setBinding() {
         binding.btnLogin.setOnClickListener {
             val email = binding.etLogin.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
@@ -44,7 +47,9 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainScreen::class.java))
                     finish()
-                } else {
+                }
+
+                else {
                     Toast.makeText(this, errorMessage ?: "Falha ao realizar login", Toast.LENGTH_SHORT).show()
                 }
             }

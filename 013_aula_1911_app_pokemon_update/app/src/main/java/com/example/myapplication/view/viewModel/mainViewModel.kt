@@ -16,6 +16,7 @@ import com.example.myapplication.data.room.AppDatabase
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,8 +24,10 @@ import retrofit2.Response
 
 class mainViewModel(application: Application): AndroidViewModel(application) {
     var qtd_lista: Int = 20
-    private val db = AppDatabase.getDatabase(application.applicationContext).AnimalDAO()
+    // private val db = AppDatabase.getDatabase(application.applicationContext).AnimalDAO()
     private val auth = FirebaseAuth.getInstance()
+    private val db = FirebaseFirestore.getInstance()
+
 
     fun registraUser(email: String, password: String, callback: (Boolean, String?) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
