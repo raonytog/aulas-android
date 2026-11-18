@@ -13,6 +13,9 @@ import com.example.myapplication.data.repository.entity.PokemonListResponse
 import com.example.myapplication.data.repository.entity.PokemonResultEntity
 import com.example.myapplication.data.repository.service.PokemonService
 import com.example.myapplication.data.room.AppDatabase
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,6 +24,26 @@ import retrofit2.Response
 class mainViewModel(application: Application): AndroidViewModel(application) {
     var qtd_lista: Int = 20
     private val db = AppDatabase.getDatabase(application.applicationContext).AnimalDAO()
+    private val auth = FirebaseAuth.getInstance()
+
+    fun registraUser(email: String, password: String, callback: (Boolean, String?) -> Unit) {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) { callback(true, null) }
+                else { callback(false, task.exception?.localizedMessage) }
+            }
+    }
+
+    fun loginUser(email: String, password: String, callback: (Boolean, String?) -> Unit) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback(true, null)
+                } else {
+                    callback(false, task.exception?.localizedMessage)
+                }
+            }
+    }
+
 
     private val qtdAcertados = MutableLiveData<Int>(0)
     fun getQtdAcertados(): LiveData<Int> { return qtdAcertados }
@@ -41,6 +64,7 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
     fun getPokemon(): LiveData<PokemonEntity> { return pokemon }
 
     fun getFavoritePokemonList(): LiveData<List<PokemonModel>> { return db.getAll() }
+
 
     fun addPokemon() {
         val currentPokemon = pokemon.value ?: return

@@ -36,12 +36,32 @@
     <string name="toast_set_favorite">Pokemon adicionado como favorito!</string>
     <string name="toast_del_favorite">Pokemon removido como favorito!</string>
 
+    <!-- status -->
     <string name="correct_pokemon"> Adivinhados:</string>
     <string name="wrong_pokemon"> Errados:</string>
     <string name="total_pokemon"> Total:</string>
 
+    <!-- navbar names -->
+    <string name="search">Busca</string>
+    <string name="favorite">Favoritos</string>
+    <string name="list">Lista</string>
 
+    <!-- login -->
+    <string name="hint_login">Digite seu login</string>
+    <string name="hint_senha">Digite sua senha</string>
 
+    <!-- cadastro -->
+    <string name="hint_nome">Digite seu login</string>
+    <string name="hint_nick">Digite seu apelido</string>
+    <string name="hint_email">Digite o e-mail</string>
+    <string name="hint_senha1">Digite a sua senha</string>
+    <string name="hint_senha2">Digite a sua senha de novo</string>
+
+    <string name="btn_enter">Entrar</string>
+    <string name="label_forgot_password">Esqueci a senha</string>
+    <string name="label_register_link">Cadastra-se</string>
+    <string name="title_register">Cadastro</string>
+    <string name="btn_register">Cadastrar</string>
 
 
 
