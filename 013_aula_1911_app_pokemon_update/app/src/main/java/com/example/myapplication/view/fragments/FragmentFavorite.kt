@@ -1,13 +1,16 @@
 package com.example.myapplication.view.fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.data.model.PokemonModel
 import com.example.myapplication.databinding.FragmentFavoriteBinding
 import com.example.myapplication.view.adapter.PokemonLineAdapter
 import com.example.myapplication.view.ui.ResultScreen
@@ -29,7 +32,9 @@ class FragmentFavorite : Fragment() {
 
         mainVM = ViewModelProvider(requireActivity())[mainViewModel::class.java]
         adapter = PokemonLineAdapter(
-            onDeleteClick = { pokemonToDelete -> mainVM.deletePokemon(pokemonToDelete) },
+            onDeleteClick = { pokemonToDelete ->
+                showDeleteDialog(pokemonToDelete)
+            },
             onItemClick = { pokemonClicked ->
                 val intent = Intent(requireContext(), ResultScreen::class.java).apply {
                     putExtra("PokemonName", pokemonClicked.name)
@@ -54,5 +59,17 @@ class FragmentFavorite : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun showDeleteDialog(pokemon: PokemonModel) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Excluir Pokémon")
+            .setMessage("Tem certeza que deseja remover ${pokemon.name.replaceFirstChar { it.uppercase() }} dos favoritos?")
+            .setPositiveButton("Sim") { _, _ ->
+                mainVM.deletePokemon(pokemon)
+            }
+            .setNegativeButton("Não", null)
+            .create()
+            .show()
     }
 }

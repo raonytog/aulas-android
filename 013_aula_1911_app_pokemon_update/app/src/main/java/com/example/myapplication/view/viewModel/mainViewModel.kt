@@ -12,11 +12,10 @@ import com.example.myapplication.data.repository.entity.PokemonEntity
 import com.example.myapplication.data.repository.entity.PokemonListResponse
 import com.example.myapplication.data.repository.entity.PokemonResultEntity
 import com.example.myapplication.data.repository.service.PokemonService
-import com.example.myapplication.data.room.AppDatabase
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,29 +23,11 @@ import retrofit2.Response
 
 class mainViewModel(application: Application): AndroidViewModel(application) {
     var qtd_lista: Int = 20
-    // private val db = AppDatabase.getDatabase(application.applicationContext).AnimalDAO()
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
-
-    fun registraUser(email: String, password: String, callback: (Boolean, String?) -> Unit) {
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                if (task.isSuccessful) { callback(true, null) }
-                else { callback(false, task.exception?.localizedMessage) }
-            }
-    }
-
-    fun loginUser(email: String, password: String, callback: (Boolean, String?) -> Unit) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    callback(true, null)
-                } else {
-                    callback(false, task.exception?.localizedMessage)
-                }
-            }
-    }
-
+    private val favoritePokemonList = MutableLiveData<List<PokemonModel>>(emptyList())
+    private var favoritesListener: ListenerRegistration? = null
 
     private val qtdAcertados = MutableLiveData<Int>(0)
     fun getQtdAcertados(): LiveData<Int> { return qtdAcertados }
@@ -66,7 +47,63 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
     private val pokemon = MutableLiveData<PokemonEntity>()
     fun getPokemon(): LiveData<PokemonEntity> { return pokemon }
 
-    fun getFavoritePokemonList(): LiveData<List<PokemonModel>> { return db.getAll() }
+    fun getFavoritePokemonList(): LiveData<List<PokemonModel>> {
+        return favoritePokemonList
+    }
+
+    private fun getUserPokemonCollection(): CollectionReference? {
+        val uid = auth.currentUser?.uid ?: return null
+        return db.collection("users").document(uid).collection("pokemon")
+    }
+
+    init {
+        auth.addAuthStateListener {
+            observeFavorites()
+        }
+    }
+
+    private fun observeFavorites() {
+        favoritesListener?.remove()
+
+        val userPokemonCollection = getUserPokemonCollection()
+        if (userPokemonCollection == null) {
+            favoritePokemonList.value = emptyList()
+            return
+        }
+
+        favoritesListener = userPokemonCollection.addSnapshotListener { snapshot, error ->
+            if (error != null) {
+                errorMensage.value = "Erro ao carregar favoritos: ${error.localizedMessage}"
+                return@addSnapshotListener
+            }
+            if (snapshot != null) {
+                val list = snapshot.toObjects(PokemonModel::class.java)
+                favoritePokemonList.value = list
+            }
+        }
+    }
+
+    fun registraUser(email: String, password: String, callback: (Boolean, String?) -> Unit) {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) { callback(true, null) }
+            else { callback(false, task.exception?.localizedMessage) }
+        }
+    }
+
+    fun loginUser(email: String, password: String, callback: (Boolean, String?) -> Unit) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback(true, null)
+                } else {
+                    callback(false, task.exception?.localizedMessage)
+                }
+            }
+    }
+
+    fun logoutUser() {
+        auth.signOut()
+    }
 
 
     fun addPokemon() {
@@ -77,18 +114,38 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
             return
         }
 
-        val pkmModel = entityToModel( currentPokemon )
-        db.insert(pkmModel)
+        val userPokemonCollection = getUserPokemonCollection()
+        if (userPokemonCollection == null) {
+            errorMensage.value = "Usuário não autenticado."
+            return
+        }
+
+        val pkmModel = entityToModel(currentPokemon)
+        userPokemonCollection
+            .document(pkmModel.name.lowercase())
+            .set(pkmModel)
+            .addOnFailureListener { e ->
+                errorMensage.value = e.localizedMessage
+            }
     }
 
     fun isRegisteredPokemon(name: String): Boolean {
-        val p = db.getByName( name )
-        return p != null
+        return favoritePokemonList.value?.any { it.name.equals(name, ignoreCase = true) } == true
     }
 
-    fun deletePokemon( pokemon: PokemonModel) {
-        val target = if (pokemon.id == 0) db.getByName(pokemon.name) ?: pokemon else pokemon
-        db.delete(target)
+    fun deletePokemon(pokemon: PokemonModel) {
+        val userPokemonCollection = getUserPokemonCollection()
+        if (userPokemonCollection == null) {
+            errorMensage.value = "Usuário não autenticado."
+            return
+        }
+
+        userPokemonCollection
+            .document(pokemon.name.lowercase())
+            .delete()
+            .addOnFailureListener { e ->
+                errorMensage.value = e.localizedMessage
+            }
     }
 
     fun requestList() {

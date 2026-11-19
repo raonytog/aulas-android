@@ -15,6 +15,7 @@ import com.example.myapplication.R
 import com.example.myapplication.data.model.entityToModel
 import com.example.myapplication.databinding.ActivityResultScreenBinding
 import com.example.myapplication.view.viewModel.mainViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class ResultScreen : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityResultScreenBinding
@@ -55,9 +56,31 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
     }
 
     fun setObserver() {
+        mainVM.getFavoritePokemonList().observe(this) { favorites ->
+            val currentName = binding.textPokemonName.text.toString()
+            val isFavorite = favorites?.any { it.name.equals(currentName, ignoreCase = true) } == true
+
+            if (isFavorite) {
+                binding.imgFavorite.setImageResource(R.drawable.favorite_full)
+                binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
+            } else {
+                binding.imgFavorite.setImageResource(R.drawable.favorite)
+                binding.imgFavorite.clearColorFilter()
+            }
+        }
+
         mainVM.getPokemon().observe(this) { pokemon ->
             pokemon?.let {
                 binding.textPokemonName.text = it.name.replaceFirstChar { it.uppercase() }
+
+                val isFavorite = mainVM.isRegisteredPokemon(it.name)
+                if (isFavorite) {
+                    binding.imgFavorite.setImageResource(R.drawable.favorite_full)
+                    binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
+                } else {
+                    binding.imgFavorite.setImageResource(R.drawable.favorite)
+                    binding.imgFavorite.clearColorFilter()
+                }
 
                 val type1Name = it.types.first().type.name.replaceFirstChar { it.uppercase() }
                 val type2Name = it.types.last().type.name.replaceFirstChar { it.uppercase() }
@@ -106,25 +129,56 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
         when(view.id) {
             R.id.img_back -> finish()
             R.id.img_favorite -> {
+                val pokemonName = binding.textPokemonName.text.toString()
+                val pkmEntity = mainVM.getPokemon().value
 
-                // se o pokemon ja ta registrado como favorito
-                if (mainVM.isRegisteredPokemon(binding.textPokemonName.text.toString() )) {
-                    val pkmEntity = mainVM.getPokemon().value
+                // Se o pokémon já está registrado como favorito -> remover
+                if (mainVM.isRegisteredPokemon(pokemonName)) {
                     if (pkmEntity != null) {
-                        val pkmModel = entityToModel(pkmEntity)
-                        mainVM.deletePokemon( pkmModel )
+                        mainVM.deletePokemon( entityToModel(pkmEntity) )
                         binding.imgFavorite.setImageResource(R.drawable.favorite)
                         binding.imgFavorite.clearColorFilter()
-                        Toast.makeText(this, getText(R.string.toast_del_favorite), Toast.LENGTH_SHORT).show()
+
+                        // desfazer a remocao
+                        showSnackbar("Pokémon removido dos favoritos") {
+                            mainVM.addPokemon()
+                            binding.imgFavorite.setImageResource(R.drawable.favorite_full)
+                            binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
+                        }
                     }
+
+                // Se o pokémon não estava registrado como favorito (Adicionar)
                 } else {
-                        mainVM.addPokemon()
-                        binding.imgFavorite.setImageResource(R.drawable.favorite_full)
-                        binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
-                        Toast.makeText(this, getText(R.string.toast_set_favorite), Toast.LENGTH_SHORT).show()
+                    mainVM.addPokemon()
+                    binding.imgFavorite.setImageResource(R.drawable.favorite_full)
+                    binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
+
+                    // desfazer adição
+                    showSnackbar("Pokémon adicionado aos favoritos") {
+                        if (pkmEntity != null) {
+                            val pkmModel = entityToModel(pkmEntity)
+                            mainVM.deletePokemon(pkmModel)
+                            binding.imgFavorite.setImageResource(R.drawable.favorite)
+                            binding.imgFavorite.clearColorFilter()
+                        }
+                    }
                 }
             }
         }
+    }
+
+    private fun showSnackbar(message: String, undoAction: () -> Unit) {
+        val snack = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        snack.setBackgroundTint(getColor(R.color.red_300))
+        snack.setTextColor(getColor(R.color.white))
+        snack.setActionTextColor(getColor(R.color.white))
+        snack.setTextMaxLines(1)
+
+        snack.setAction("Desfazer") {
+            undoAction()
+        }
+
+        snack.show()
     }
 
     private fun getTypeColor(type: String): Int {

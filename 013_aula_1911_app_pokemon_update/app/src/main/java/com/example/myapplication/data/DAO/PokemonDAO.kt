@@ -1,28 +1,4 @@
 package com.example.myapplication.data.DAO
 
-import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
-import com.example.myapplication.data.model.PokemonModel
-
-@Dao
-interface PokemonDAO {
-
-    @Insert
-    fun insert(pokemon: PokemonModel): Long
-
-    @Update
-    fun update(pokemon: PokemonModel): Int
-
-    @Delete
-    fun delete(pokemon: PokemonModel): Int
-
-    @Query("SELECT * FROM pokemon")
-    fun getAll(): LiveData<List<PokemonModel>>
-
-    @Query("SELECT * FROM pokemon WHERE LOWER(name) = LOWER(:name) LIMIT 1")
-    fun getByName(name: String): PokemonModel?
-}
+// Room DAO substituído pelo Cloud Firestore
+interface PokemonDAO

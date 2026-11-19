@@ -5,14 +5,22 @@
         android:title="@string/search"
         android:icon="@drawable/search"
         />
+
     <item
         android:id="@+id/fragmentFavorite"
         android:title="@string/favorite"
         android:icon="@drawable/favorite"
         />
+
     <item
         android:id="@+id/fragmentList"
         android:title="@string/list"
         android:icon="@drawable/list"
+        />
+
+    <item
+        android:id="@+id/menu_logout"
+        android:title="Logout"
+        android:icon="@drawable/logout"
         />
 </menu>

@@ -24,7 +24,13 @@ class LoginActivity : AppCompatActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            val paddingPx = (24 * resources.displayMetrics.density).toInt()
+            v.setPadding(
+                systemBars.left + paddingPx,
+                systemBars.top + paddingPx,
+                systemBars.right + paddingPx,
+                systemBars.bottom + paddingPx
+            )
             insets
         }
 
