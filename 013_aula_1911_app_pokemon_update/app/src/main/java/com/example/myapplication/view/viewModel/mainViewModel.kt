@@ -84,9 +84,9 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun registraUser(email: String, password: String, callback: (Boolean, String?) -> Unit) {
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if (task.isSuccessful) { callback(true, null) }
-            else { callback(false, task.exception?.localizedMessage) }
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { it ->
+            if (it.isSuccessful) { callback(true, null) }
+            else { callback(false, it.exception?.localizedMessage) }
         }
     }
 

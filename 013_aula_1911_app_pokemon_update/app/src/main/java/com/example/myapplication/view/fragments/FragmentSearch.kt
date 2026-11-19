@@ -53,6 +53,7 @@ class FragmentSearch : Fragment() {
 
     private fun loadRandomPokemon() {
         key = Constantes.POKEMON.LIST.random()
+        if (Constantes.POKEMON.LIST.isNotEmpty() && Constantes.POKEMON.LIST.size != 1) { Constantes.POKEMON.LIST.remove(key) }
         mainVM.requestPokemon(key)
     }
 

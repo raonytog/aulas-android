@@ -6,7 +6,7 @@ class Constantes {
     }
 
     object POKEMON {
-        val LIST = listOf(
+        val LIST = mutableListOf<String>(
             "decidueye",
             "corviknight",
             "dragapult",
