@@ -1,6 +1,8 @@
 package com.example.myapplication.view.viewModel
 
 import android.app.Application
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.example.myapplication.view.ui.MainScreen
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -60,6 +63,10 @@ class mainViewModel(application: Application): AndroidViewModel(application) {
         auth.addAuthStateListener {
             observeFavorites()
         }
+    }
+
+    fun continuaLogin(): Boolean {
+        return auth.currentUser != null
     }
 
     private fun observeFavorites() {

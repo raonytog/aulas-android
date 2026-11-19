@@ -36,7 +36,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
         mainVM = ViewModelProvider(this)[mainViewModel::class.java]
+        setup()
         setBinding()
+    }
+
+    fun setup() {
+        if (mainVM.continuaLogin()) {
+            startActivity(Intent(this, MainScreen::class.java))
+        }
     }
 
     fun setBinding() {
