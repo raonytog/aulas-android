@@ -58,14 +58,14 @@ class MainScreen : AppCompatActivity() {
 
     private fun showLogoutDialog() {
         AlertDialog.Builder(this)
-            .setTitle("Sair do Aplicativo")
-            .setMessage("Tem certeza de que deseja sair da sua conta?")
-            .setPositiveButton("Sim") { _, _ ->
+            .setTitle(getString(R.string.dialog_logout_title))
+            .setMessage(getString(R.string.dialog_logout_message))
+            .setPositiveButton(getString(R.string.dialog_yes)) { _, _ ->
                 mainVM.logoutUser()
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-            .setNegativeButton("Não", null)
+            .setNegativeButton(getString(R.string.dialog_no), null)
             .create()
             .show()
     }

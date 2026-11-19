@@ -1,7 +1,6 @@
 package com.example.myapplication.view.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -47,7 +46,7 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
         val pokemonName = intent.getStringExtra("PokemonName") ?: "pikachu"
         binding.textPokemonName.text = pokemonName
 
-        if ( mainVM.isRegisteredPokemon( pokemonName )) {
+        if (mainVM.isRegisteredPokemon(pokemonName)) {
             binding.imgFavorite.setImageResource(R.drawable.favorite_full)
             binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
         }
@@ -91,7 +90,6 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
 
                 if (type1Name == type2Name) {
                     binding.textType2.visibility = View.GONE
-
                 } else {
                     binding.textType2.visibility = View.VISIBLE
                     binding.textType2.text = type2Name
@@ -135,12 +133,12 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
                 // Se o pokémon já está registrado como favorito -> remover
                 if (mainVM.isRegisteredPokemon(pokemonName)) {
                     if (pkmEntity != null) {
-                        mainVM.deletePokemon( entityToModel(pkmEntity) )
+                        mainVM.deletePokemon(entityToModel(pkmEntity))
                         binding.imgFavorite.setImageResource(R.drawable.favorite)
                         binding.imgFavorite.clearColorFilter()
 
-                        // desfazer a remocao
-                        showSnackbar("Pokémon removido dos favoritos") {
+                        // desfazer a remoção
+                        showSnackbar(getString(R.string.snackbar_pokemon_removed)) {
                             mainVM.addPokemon()
                             binding.imgFavorite.setImageResource(R.drawable.favorite_full)
                             binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
@@ -154,7 +152,7 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
                     binding.imgFavorite.setColorFilter(getColor(R.color.red_100))
 
                     // desfazer adição
-                    showSnackbar("Pokémon adicionado aos favoritos") {
+                    showSnackbar(getString(R.string.snackbar_pokemon_added)) {
                         if (pkmEntity != null) {
                             val pkmModel = entityToModel(pkmEntity)
                             mainVM.deletePokemon(pkmModel)
@@ -174,7 +172,7 @@ class ResultScreen : AppCompatActivity(), View.OnClickListener {
         snack.setActionTextColor(getColor(R.color.white))
         snack.setTextMaxLines(1)
 
-        snack.setAction("Desfazer") {
+        snack.setAction(getString(R.string.snackbar_undo)) {
             undoAction()
         }
 

@@ -50,21 +50,26 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
                 val passwordConfirm = binding.etPassword2.text.toString().trim()
 
                 if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(this, "Preencha e-mail e senha", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.toast_fill_email_password), Toast.LENGTH_SHORT).show()
                     return
                 }
 
                 if (password != passwordConfirm) {
-                    Toast.makeText(this, "As senhas não conferem", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.toast_password_mismatch), Toast.LENGTH_SHORT).show()
+                    return
+                }
+
+                if (password.length < 6) {
+                    Toast.makeText(this, getString(R.string.toast_password_too_short), Toast.LENGTH_SHORT).show()
                     return
                 }
 
                 mainVM.registraUser(email, password) { success, errorMessage ->
                     if (success) {
-                        Toast.makeText(this, "Usuário cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.toast_register_success), Toast.LENGTH_SHORT).show()
                         finish()
                     } else {
-                        Toast.makeText(this, errorMessage ?: "Erro ao cadastrar", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, errorMessage ?: getString(R.string.toast_register_error), Toast.LENGTH_SHORT).show()
                     }
                 }
             }

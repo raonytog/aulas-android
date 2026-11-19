@@ -3,13 +3,13 @@ package com.example.myapplication.view.fragments
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.R
 import com.example.myapplication.data.model.PokemonModel
 import com.example.myapplication.databinding.FragmentFavoriteBinding
 import com.example.myapplication.view.adapter.PokemonLineAdapter
@@ -62,13 +62,14 @@ class FragmentFavorite : Fragment() {
     }
 
     private fun showDeleteDialog(pokemon: PokemonModel) {
+        val formattedName = pokemon.name.replaceFirstChar { it.uppercase() }
         AlertDialog.Builder(requireContext())
-            .setTitle("Excluir Pokémon")
-            .setMessage("Tem certeza que deseja remover ${pokemon.name.replaceFirstChar { it.uppercase() }} dos favoritos?")
-            .setPositiveButton("Sim") { _, _ ->
+            .setTitle(getString(R.string.dialog_delete_title))
+            .setMessage(getString(R.string.dialog_delete_message, formattedName))
+            .setPositiveButton(getString(R.string.dialog_yes)) { _, _ ->
                 mainVM.deletePokemon(pokemon)
             }
-            .setNegativeButton("Não", null)
+            .setNegativeButton(getString(R.string.dialog_no), null)
             .create()
             .show()
     }

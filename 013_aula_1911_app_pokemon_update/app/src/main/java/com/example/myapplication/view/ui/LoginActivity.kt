@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityLoginBinding
 import com.example.myapplication.view.viewModel.mainViewModel
 
@@ -44,19 +45,17 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.etPassword.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Preencha e-mail e senha", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_fill_email_password), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             mainVM.loginUser(email, password) { success, errorMessage ->
                 if (success) {
-                    Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.toast_login_success), Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainScreen::class.java))
                     finish()
-                }
-
-                else {
-                    Toast.makeText(this, errorMessage ?: "Falha ao realizar login", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, errorMessage ?: getString(R.string.toast_login_error), Toast.LENGTH_SHORT).show()
                 }
             }
         }
